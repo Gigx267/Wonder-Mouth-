@@ -1,0 +1,721 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Place Order - Wonder Mouth Cafe</title>
+  
+  <!-- Google Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&family=Fredoka+One&family=Caveat:wght@700&display=swap" rel="stylesheet">
+  
+  <!-- Font Awesome -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  
+  <style>
+    :root {
+      --primary-yellow: #FFD700;
+      --primary-red: #FF4500;
+      --dark-red: #E03C31;
+      --light-yellow: #FFF9C4;
+      --cream: #FFF5E0;
+      --dark: #333333;
+      --light: #ffffff;
+    }
+    
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+    
+    body {
+      font-family: 'Poppins', sans-serif;
+      background-color: var(--cream);
+      color: var(--dark);
+      line-height: 1.6;
+      padding: 0;
+      margin: 0;
+    }
+    
+    /* Redesigned Navbar */
+    .navbar {
+      background-color: var(--light);
+      padding: 0.8rem 2rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+      box-shadow: 0 2px 15px rgba(0, 0, 0, 0.1);
+      border-bottom: 3px solid var(--primary-yellow);
+    }
+    
+    .logo-container {
+      display: flex;
+      align-items: center;
+      gap: 0.8rem;
+    }
+    
+    .logo-img {
+      height: 50px;
+      width: 50px;
+      border-radius: 50%;
+      object-fit: cover;
+      border: 2px solid var(--primary-red);
+    }
+    
+    .logo-text {
+      font-family: 'Fredoka One', cursive;
+      font-size: 1.8rem;
+      color: var(--primary-red);
+      letter-spacing: 0.5px;
+    }
+    
+    .logo-text span {
+      color: var(--primary-yellow);
+    }
+    
+    .nav-items {
+      display: flex;
+      align-items: center;
+      gap: 1.5rem;
+    }
+    
+    .nav-link {
+      color: var(--dark);
+      text-decoration: none;
+      font-weight: 600;
+      font-size: 1rem;
+      padding: 0.5rem 0.8rem;
+      transition: all 0.3s ease;
+      position: relative;
+    }
+    
+    .nav-link:hover {
+      color: var(--primary-red);
+    }
+    
+    .nav-link::after {
+      content: '';
+      position: absolute;
+      width: 0;
+      height: 2px;
+      background-color: var(--primary-yellow);
+      bottom: 0;
+      left: 0;
+      transition: width 0.3s ease;
+    }
+    
+    .nav-link:hover::after {
+      width: 100%;
+    }
+    
+    .cta-button {
+      background-color: var(--primary-red);
+      color: white;
+      border: none;
+      padding: 0.6rem 1.5rem;
+      border-radius: 50px;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      box-shadow: 0 4px 10px rgba(255, 69, 0, 0.3);
+      text-transform: uppercase;
+      font-size: 0.9rem;
+      letter-spacing: 0.5px;
+    }
+    
+    .cta-button:hover {
+      background-color: var(--dark-red);
+      transform: translateY(-2px);
+      box-shadow: 0 6px 15px rgba(255, 69, 0, 0.4);
+    }
+    
+    .hamburger {
+      display: none;
+      flex-direction: column;
+      justify-content: space-around;
+      width: 30px;
+      height: 25px;
+      background: transparent;
+      border: none;
+      cursor: pointer;
+      padding: 0;
+    }
+    
+    .hamburger span {
+      width: 100%;
+      height: 3px;
+      background-color: var(--primary-red);
+      border-radius: 5px;
+      transition: all 0.3s ease;
+    }
+    
+    /* Mobile menu */
+    .mobile-menu {
+      display: none;
+      position: fixed;
+      top: 70px;
+      left: 0;
+      width: 100%;
+      background-color: var(--light);
+      box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+      padding: 1rem 0;
+      z-index: 999;
+    }
+    
+    .mobile-menu.active {
+      display: block;
+    }
+    
+    .mobile-nav-link {
+      display: block;
+      padding: 1rem 2rem;
+      color: var(--dark);
+      text-decoration: none;
+      font-weight: 600;
+      border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+      transition: all 0.3s ease;
+    }
+    
+    .mobile-nav-link:hover {
+      background-color: var(--light-yellow);
+      color: var(--primary-red);
+      padding-left: 2.5rem;
+    }
+    
+    .mobile-cta {
+      display: block;
+      margin: 1rem 2rem;
+      text-align: center;
+    }
+    
+    /* Order Hero Section */
+    .order-hero {
+      padding: 6rem 2rem;
+      text-align: center;
+      background: linear-gradient(135deg, rgba(255,215,0,0.15), rgba(255,165,0,0.15)), url('./logo.jpg');
+      background-size: cover;
+      background-position: center;
+      position: relative;
+      color: var(--dark);
+    }
+    
+    .order-hero::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: rgba(255, 255, 255, 0.85);
+    }
+    
+    .order-hero-content {
+      position: relative;
+      z-index: 2;
+      max-width: 800px;
+      margin: 0 auto;
+    }
+    
+    .order-hero h1 {
+      font-family: 'Fredoka One', cursive;
+      font-size: 3.5rem;
+      color: var(--primary-red);
+      margin-bottom: 1.5rem;
+    }
+    
+    .order-hero h1 span {
+      color: var(--primary-yellow);
+    }
+    
+    .order-hero p {
+      font-size: 1.3rem;
+      margin-bottom: 2rem;
+    }
+    
+    /* Order Section */
+    .order-section {
+      padding: 5rem 2rem;
+    }
+    
+    .order-container {
+      max-width: 1000px;
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 3rem;
+    }
+    
+    .order-info {
+      background-color: var(--light);
+      padding: 3rem;
+      border-radius: 15px;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+    }
+    
+    .order-info h2 {
+      font-family: 'Fredoka One', cursive;
+      font-size: 2rem;
+      color: var(--primary-red);
+      margin-bottom: 2rem;
+      position: relative;
+      display: inline-block;
+    }
+    
+    .order-info h2::after {
+      content: '';
+      position: absolute;
+      width: 50%;
+      height: 4px;
+      background-color: var(--primary-yellow);
+      bottom: -10px;
+      left: 0;
+    }
+    
+    .order-options {
+      display: flex;
+      flex-direction: column;
+      gap: 2rem;
+      margin-top: 2rem;
+    }
+    
+    .order-option {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      text-align: center;
+      padding: 2rem;
+      background-color: var(--light-yellow);
+      border-radius: 15px;
+      transition: all 0.3s ease;
+    }
+    
+    .order-option:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+    }
+    
+    .option-icon {
+      width: 80px;
+      height: 80px;
+      background-color: var(--primary-red);
+      color: white;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-bottom: 1.5rem;
+      font-size: 2rem;
+    }
+    
+    .option-title {
+      font-size: 1.5rem;
+      margin-bottom: 1rem;
+      color: var(--primary-red);
+      font-weight: 600;
+    }
+    
+    .option-desc {
+      margin-bottom: 1.5rem;
+      color: var(--dark);
+    }
+    
+    .option-button {
+      background-color: var(--primary-red);
+      color: white;
+      border: none;
+      padding: 0.8rem 1.8rem;
+      border-radius: 50px;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      box-shadow: 0 4px 10px rgba(255, 69, 0, 0.3);
+      text-decoration: none;
+      display: inline-block;
+    }
+    
+    .option-button:hover {
+      background-color: var(--dark-red);
+      transform: translateY(-2px);
+      box-shadow: 0 6px 15px rgba(255, 69, 0, 0.4);
+    }
+    
+    /* Menu Preview Section */
+    .menu-preview {
+      padding: 5rem 2rem;
+      background: linear-gradient(135deg, rgba(255,215,0,0.1), rgba(255,165,0,0.1));
+    }
+    
+    .menu-container {
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+    
+    .section-title {
+      font-family: 'Fredoka One', cursive;
+      font-size: 2.5rem;
+      color: var(--primary-red);
+      margin-bottom: 3rem;
+      text-align: center;
+      position: relative;
+      display: inline-block;
+      left: 50%;
+      transform: translateX(-50%);
+    }
+    
+    .section-title::after {
+      content: '';
+      position: absolute;
+      width: 50%;
+      height: 4px;
+      background-color: var(--primary-yellow);
+      bottom: -10px;
+      left: 25%;
+    }
+    
+    .menu-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+      gap: 2rem;
+    }
+    
+    .menu-item {
+      background-color: var(--light);
+      border-radius: 15px;
+      overflow: hidden;
+      box-shadow: 0 5px 15px rgba(0, 0, 0, 0.08);
+      transition: all 0.3s ease;
+    }
+    
+    .menu-item:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 15px 30px rgba(0, 0, 0, 0.15);
+    }
+    
+    .menu-img {
+      width: 100%;
+      height: 200px;
+      object-fit: cover;
+    }
+    
+    .menu-content {
+      padding: 1.5rem;
+    }
+    
+    .menu-title {
+      font-size: 1.3rem;
+      margin-bottom: 0.5rem;
+      color: var(--primary-red);
+    }
+    
+    .menu-desc {
+      color: var(--dark);
+      margin-bottom: 1rem;
+      font-size: 0.9rem;
+    }
+    
+    .menu-price {
+      font-weight: 700;
+      color: var(--primary-red);
+      font-size: 1.2rem;
+    }
+    
+    /* Footer */
+    footer {
+      background-color: var(--dark);
+      color: var(--light);
+      padding: 3rem 2rem;
+      text-align: center;
+    }
+    
+    .footer-content {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 2rem;
+      max-width: 1200px;
+      margin: 0 auto;
+      text-align: left;
+    }
+    
+    .footer-column h3 {
+      font-family: 'Fredoka One', cursive;
+      font-size: 1.5rem;
+      color: var(--primary-yellow);
+      margin-bottom: 1.5rem;
+    }
+    
+    .footer-column p {
+      margin-bottom: 1rem;
+    }
+    
+    .footer-column a {
+      color: var(--light);
+      text-decoration: none;
+      display: block;
+      margin-bottom: 0.8rem;
+      transition: all 0.3s ease;
+    }
+    
+    .footer-column a:hover {
+      color: var(--primary-yellow);
+      transform: translateX(5px);
+    }
+    
+    .social-links {
+      display: flex;
+      gap: 1rem;
+      margin-top: 1.5rem;
+    }
+    
+    .social-links a {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 40px;
+      height: 40px;
+      background-color: rgba(255,255,255,0.1);
+      border-radius: 50%;
+      color: var(--light);
+      transition: all 0.3s ease;
+    }
+    
+    .social-links a:hover {
+      background-color: var(--primary-yellow);
+      color: var(--dark);
+      transform: translateY(-5px);
+    }
+    
+    .copyright {
+      margin-top: 3rem;
+      padding-top: 1.5rem;
+      border-top: 1px solid rgba(255,255,255,0.1);
+      font-size: 0.9rem;
+    }
+    
+    /* Responsive styles */
+    @media (max-width: 900px) {
+      .nav-items {
+        display: none;
+      }
+      
+      .hamburger {
+        display: flex;
+      }
+      
+      .order-hero h1 {
+        font-size: 2.5rem;
+      }
+    }
+    
+    @media (max-width: 768px) {
+      .navbar {
+        padding: 0.8rem 1rem;
+      }
+      
+      .logo-text {
+        font-size: 1.5rem;
+      }
+      
+      .logo-img {
+        height: 40px;
+        width: 40px;
+      }
+      
+      .order-hero {
+        padding: 4rem 1rem;
+      }
+      
+      .order-section, .menu-preview {
+        padding: 3rem 1rem;
+      }
+      
+      .order-info {
+        padding: 2rem;
+      }
+    }
+  </style>
+</head>
+<body>
+  <!-- Redesigned Navbar -->
+  <nav class="navbar">
+    <div class="logo-container">
+      <img src="logo.jpg" alt="Wonder Mouth Logo" class="logo-img">
+      <div class="logo-text">Wonder <span>Mouth</span></div>
+    </div>
+    
+    <div class="nav-items">
+      <a href="index.html" class="nav-link">Home</a>
+      <a href="About.html" class="nav-link">About</a>
+      <a href="Menu.html" class="nav-link">Menu</a>
+      <a href="Contact.html" class="nav-link">Contact</a>
+      <button class="cta-button" onclick="location.href='Order.html'">Place Order</button>
+    </div>
+    
+    <button class="hamburger" id="hamburger">
+      <span></span>
+      <span></span>
+      <span></span>
+    </button>
+  </nav>
+  
+  <!-- Mobile Menu -->
+  <div class="mobile-menu" id="mobileMenu">
+    <a href="index.html" class="mobile-nav-link">Home</a>
+    <a href="About.html" class="mobile-nav-link">About</a>
+    <a href="Menu.html" class="mobile-nav-link">Menu</a>
+    <a href="Contact.html" class="mobile-nav-link">Contact</a>
+    <button class="cta-button mobile-cta" onclick="location.href='Order.html'">Place Order</button>
+  </div>
+  
+  <!-- Order Hero Section -->
+  <section class="order-hero">
+    <div class="order-hero-content">
+      <h1>Place Your <span>Order</span></h1>
+      <p>Delicious meals just a call or message away. Experience the Wonder Mouth magic delivered to your doorstep.</p>
+    </div>
+  </section>
+  
+  <!-- Order Section -->
+  <section class="order-section">
+    <div class="order-container">
+      <div class="order-info">
+        <h2>How to Order</h2>
+        <p>We make ordering simple and convenient. Choose your preferred method below to place your order.</p>
+        
+        <div class="order-options">
+          <div class="order-option">
+            <div class="option-icon">
+              <i class="fas fa-phone"></i>
+            </div>
+            <h3 class="option-title">Call to Order</h3>
+            <p class="option-desc">Speak directly with our staff to place your order and get recommendations.</p>
+            <a href="tel:+2348160348696" class="option-button">Call Now</a>
+          </div>
+          
+          <div class="order-option">
+            <div class="option-icon">
+              <i class="fab fa-whatsapp"></i>
+            </div>
+            <h3 class="option-title">WhatsApp Order</h3>
+            <p class="option-desc">Send us a message on WhatsApp with your order for quick processing.</p>
+            <a href="https://wa.me/2348160348696?text=Hello%20Wonder%20Mouth%20Cafe!%20I'd%20like%20to%20place%20an%20order." class="option-button" target="_blank">Message Us</a>
+          </div>
+        </div>
+      </div>
+      
+      <div class="order-info">
+        <h2>Order Information</h2>
+        
+        <div class="info-item">
+          <div class="info-icon">
+            <i class="fas fa-clock"></i>
+          </div>
+          <div class="info-content">
+            <h3>Order Hours</h3>
+            <p><strong>Mon-Fri:</strong> 8:00 AM - 9:30 PM<br>
+            <strong>Sat-Sun:</strong> 9:00 AM - 10:30 PM</p>
+          </div>
+        </div>
+        
+        <div class="info-item">
+          <div class="info-icon">
+            <i class="fas fa-truck"></i>
+          </div>
+          <div class="info-content">
+            <h3>Delivery Info</h3>
+            <p>Delivery available within Abuja. Minimum order: ₦2,500. Delivery fee: ₦500.</p>
+          </div>
+        </div>
+        
+        <div class="info-item">
+          <div class="info-icon">
+            <i class="fas fa-utensils"></i>
+          </div>
+          <div class="info-content">
+            <h3>Pickup Available</h3>
+            <p>Prefer to pick up your order? Let us know when you call or message.</p>
+          </div>
+        </div>
+        
+        <div class="info-item">
+          <div class="info-icon">
+            <i class="fas fa-credit-card"></i>
+          </div>
+          <div class="info-content">
+            <h3>Payment Methods</h3>
+            <p>We accept cash on delivery, bank transfer, and POS payments.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+  
+ 
+  
+  <!-- Footer -->
+  <footer>
+    <div class="footer-content">
+      <div class="footer-column">
+        <h3>Wonder Mouth</h3>
+        <p>Where every bite is a delightful surprise and every meal is served with speed and love.</p>
+        <div class="social-links">
+          <a href="https://www.instagram.com/wondermouthcafe/"><i class="fab fa-instagram"></i></a>
+          <a href="#"><i class="fab fa-facebook-f"></i></a>
+          <a href="#"><i class="fab fa-twitter"></i></a>
+          <a href="#"><i class="fab fa-whatsapp"></i></a>
+        </div>
+      </div>
+      
+      <div class="footer-column">
+        <h3>Quick Links</h3>
+        <a href="index.html">Home</a>
+        <a href="About.html">About Us</a>
+        <a href="Menu.html">Menu</a>
+        <a href="Contact.html">Contact</a>
+        <a href="Order.html">Order Online</a>
+      </div>
+      
+      <div class="footer-column">
+        <h3>Contact Info</h3>
+        <p><i class="fas fa-map-marker-alt"></i> Ald Estate, 6th Avenue Gwarimpa, Abuja</p>
+        <p><i class="fas fa-phone"></i> +234 8160348696</p>
+        <p><i class="fas fa-envelope"></i> info@wondermouth.com.ng</p>
+      </div>
+    </div>
+    
+    <div class="copyright">
+      <p>&copy; 2025 Wonder Mouth Cafe. All rights reserved.</p>
+    </div>
+  </footer>
+
+  <script>
+    // Mobile menu functionality
+    const hamburger = document.getElementById('hamburger');
+    const mobileMenu = document.getElementById('mobileMenu');
+    
+    hamburger.addEventListener('click', () => {
+      mobileMenu.classList.toggle('active');
+      hamburger.classList.toggle('active');
+    });
+    
+    // Close mobile menu when clicking outside
+    document.addEventListener('click', (e) => {
+      if (!hamburger.contains(e.target) && !mobileMenu.contains(e.target)) {
+        mobileMenu.classList.remove('active');
+        hamburger.classList.remove('active');
+      }
+    });
+    
+    // Close mobile menu when clicking a link
+    const mobileLinks = document.querySelectorAll('.mobile-nav-link');
+    mobileLinks.forEach(link => {
+      link.addEventListener('click', () => {
+        mobileMenu.classList.remove('active');
+        hamburger.classList.remove('active');
+      });
+    });
+  </script>
+</body>
+</html>
