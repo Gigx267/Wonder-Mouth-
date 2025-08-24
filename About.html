@@ -1,0 +1,812 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>About Us - Wonder Mouth Cafe</title>
+  <link rel="icon" type="image/x-icon" href="logo.jpg">
+  
+  <!-- Google Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&family=Fredoka+One&family=Caveat:wght@700&display=swap" rel="stylesheet">
+  
+  <!-- Font Awesome -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  
+  <style>
+    :root {
+      --primary-yellow: #FFD700;
+      --primary-red: #FF4500;
+      --dark-red: #E03C31;
+      --light-yellow: #FFF9C4;
+      --cream: #FFF5E0;
+      --dark: #333333;
+      --light: #ffffff;
+    }
+    
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+    
+    body {
+      font-family: 'Poppins', sans-serif;
+      background-color: var(--cream);
+      color: var(--dark);
+      line-height: 1.6;
+      padding: 0;
+      margin: 0;
+    }
+    
+    /* Redesigned Navbar */
+    .navbar {
+      background-color: var(--light);
+      padding: 0.8rem 2rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+      box-shadow: 0 2px 15px rgba(0, 0, 0, 0.1);
+      border-bottom: 3px solid var(--primary-yellow);
+    }
+    
+    .logo-container {
+      display: flex;
+      align-items: center;
+      gap: 0.8rem;
+    }
+    
+    .logo-img {
+      height: 50px;
+      width: 50px;
+      border-radius: 50%;
+      object-fit: cover;
+      border: 2px solid var(--primary-red);
+    }
+    
+    .logo-text {
+      font-family: 'Fredoka One', cursive;
+      font-size: 1.8rem;
+      color: var(--primary-red);
+      letter-spacing: 0.5px;
+    }
+    
+    .logo-text span {
+      color: var(--primary-yellow);
+    }
+    
+    .nav-items {
+      display: flex;
+      align-items: center;
+      gap: 1.5rem;
+    }
+    
+    .nav-link {
+      color: var(--dark);
+      text-decoration: none;
+      font-weight: 600;
+      font-size: 1rem;
+      padding: 0.5rem 0.8rem;
+      transition: all 0.3s ease;
+      position: relative;
+    }
+    
+    .nav-link:hover {
+      color: var(--primary-red);
+    }
+    
+    .nav-link::after {
+      content: '';
+      position: absolute;
+      width: 0;
+      height: 2px;
+      background-color: var(--primary-yellow);
+      bottom: 0;
+      left: 0;
+      transition: width 0.3s ease;
+    }
+    
+    .nav-link:hover::after {
+      width: 100%;
+    }
+    
+    .cta-button {
+      background-color: var(--primary-red);
+      color: white;
+      border: none;
+      padding: 0.6rem 1.5rem;
+      border-radius: 50px;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      box-shadow: 0 4px 10px rgba(255, 69, 0, 0.3);
+      text-transform: uppercase;
+      font-size: 0.9rem;
+      letter-spacing: 0.5px;
+    }
+    
+    .cta-button:hover {
+      background-color: var(--dark-red);
+      transform: translateY(-2px);
+      box-shadow: 0 6px 15px rgba(255, 69, 0, 0.4);
+    }
+    
+    .hamburger {
+      display: none;
+      flex-direction: column;
+      justify-content: space-around;
+      width: 30px;
+      height: 25px;
+      background: transparent;
+      border: none;
+      cursor: pointer;
+      padding: 0;
+    }
+    
+    .hamburger span {
+      width: 100%;
+      height: 3px;
+      background-color: var(--primary-red);
+      border-radius: 5px;
+      transition: all 0.3s ease;
+    }
+    
+    /* Mobile menu */
+    .mobile-menu {
+      display: none;
+      position: fixed;
+      top: 70px;
+      left: 0;
+      width: 100%;
+      background-color: var(--light);
+      box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+      padding: 1rem 0;
+      z-index: 999;
+    }
+    
+    .mobile-menu.active {
+      display: block;
+    }
+    
+    .mobile-nav-link {
+      display: block;
+      padding: 1rem 2rem;
+      color: var(--dark);
+      text-decoration: none;
+      font-weight: 600;
+      border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+      transition: all 0.3s ease;
+    }
+    
+    .mobile-nav-link:hover {
+      background-color: var(--light-yellow);
+      color: var(--primary-red);
+      padding-left: 2.5rem;
+    }
+    
+    .mobile-cta {
+      display: block;
+      margin: 1rem 2rem;
+      text-align: center;
+    }
+    
+    /* About Hero Section */
+    .about-hero {
+      padding: 6rem 2rem;
+      text-align: center;
+      background: linear-gradient(135deg, rgba(255,215,0,0.15), rgba(255,165,0,0.15)), url('https://images.unsplash.com/photo-1414235077428-338989a2e8c0?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80');
+      background-size: cover;
+      background-position: center;
+      position: relative;
+      color: var(--dark);
+    }
+    
+    .about-hero::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: rgba(255, 255, 255, 0.85);
+    }
+    
+    .about-hero-content {
+      position: relative;
+      z-index: 2;
+      max-width: 800px;
+      margin: 0 auto;
+    }
+    
+    .about-hero h1 {
+      font-family: 'Fredoka One', cursive;
+      font-size: 3.5rem;
+      color: var(--primary-red);
+      margin-bottom: 1.5rem;
+    }
+    
+    .about-hero h1 span {
+      color: var(--primary-yellow);
+    }
+    
+    .about-hero p {
+      font-size: 1.3rem;
+      margin-bottom: 2rem;
+    }
+    
+    /* Story Section */
+    .story-section {
+      padding: 5rem 2rem;
+      background-color: var(--light);
+    }
+    
+    .story-container {
+      max-width: 1200px;
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 4rem;
+      align-items: center;
+    }
+    
+    .story-image {
+      position: relative;
+    }
+    
+    .story-image img {
+      width: 100%;
+      border-radius: 20px;
+      box-shadow: 15px 15px 0 var(--light-yellow);
+    }
+    
+    .story-image::after {
+      content: '';
+      position: absolute;
+      width: 100px;
+      height: 100px;
+      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='%23FF4500'%3E%3Cpath d='M11.645 20.91l-.007-.003-.022-.012a15.247 15.247 0 01-.383-.218 25.18 25.18 0 01-4.244-3.17C4.688 15.36 2.25 12.174 2.25 8.25 2.25 5.322 4.714 3 7.688 3A5.5 5.5 0 0112 5.052 5.5 5.5 0 0116.313 3c2.973 0 5.437 2.322 5.437 5.25 0 3.925-2.438 7.111-4.739 9.256a25.175 25.175 0 01-4.244 3.17 15.247 15.247 0 01-.383.219l-.022.012-.007.004-.003.001a.752.752 0 01-.704 0l-.003-.001z'/%3E%3C/svg%3E");
+      background-repeat: no-repeat;
+      top: -30px;
+      right: -30px;
+      z-index: 2;
+    }
+    
+    .story-content h2 {
+      font-family: 'Fredoka One', cursive;
+      font-size: 2.5rem;
+      color: var(--primary-red);
+      margin-bottom: 1.5rem;
+      position: relative;
+      display: inline-block;
+    }
+    
+    .story-content h2::after {
+      content: '';
+      position: absolute;
+      width: 50%;
+      height: 4px;
+      background-color: var(--primary-yellow);
+      bottom: -10px;
+      left: 0;
+    }
+    
+    .story-content p {
+      margin-bottom: 1.5rem;
+      font-size: 1.1rem;
+    }
+    
+    .highlight {
+      background-color: var(--light-yellow);
+      padding: 0.2rem 0.5rem;
+      border-radius: 5px;
+      font-weight: 600;
+    }
+    
+    /* Values Section */
+    .values-section {
+      padding: 5rem 2rem;
+      background-color: var(--cream);
+      text-align: center;
+    }
+    
+    .section-title {
+      font-family: 'Fredoka One', cursive;
+      font-size: 2.5rem;
+      color: var(--primary-red);
+      margin-bottom: 3rem;
+      position: relative;
+      display: inline-block;
+    }
+    
+    .section-title::after {
+      content: '';
+      position: absolute;
+      width: 50%;
+      height: 4px;
+      background-color: var(--primary-yellow);
+      bottom: -10px;
+      left: 25%;
+    }
+    
+    .values-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 2rem;
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+    
+    .value-card {
+      background: var(--light);
+      padding: 2.5rem 2rem;
+      border-radius: 15px;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+      transition: all 0.3s ease;
+    }
+    
+    .value-card:hover {
+      transform: translateY(-10px);
+      box-shadow: 0 15px 35px rgba(0, 0, 0, 0.12);
+    }
+    
+    .value-icon {
+      width: 80px;
+      height: 80px;
+      background-color: var(--light-yellow);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin: 0 auto 1.5rem;
+    }
+    
+    .value-icon i {
+      font-size: 2.5rem;
+      color: var(--primary-red);
+    }
+    
+    .value-card h3 {
+      font-family: 'Fredoka One', cursive;
+      font-size: 1.5rem;
+      margin-bottom: 1rem;
+      color: var(--primary-red);
+    }
+    
+    /* Team Section */
+    .team-section {
+      padding: 5rem 2rem;
+      background-color: var(--light);
+      text-align: center;
+    }
+    
+    .team-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 3rem;
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+    
+    .team-member {
+      background: var(--cream);
+      padding: 2rem;
+      border-radius: 15px;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+      transition: all 0.3s ease;
+    }
+    
+    .team-member:hover {
+      transform: translateY(-5px);
+    }
+    
+    .team-image {
+      width: 150px;
+      height: 150px;
+      border-radius: 50%;
+      object-fit: cover;
+      border: 5px solid var(--primary-yellow);
+      margin: 0 auto 1.5rem;
+    }
+    
+    .team-member h3 {
+      font-family: 'Fredoka One', cursive;
+      font-size: 1.5rem;
+      color: var(--primary-red);
+      margin-bottom: 0.5rem;
+    }
+    
+    .team-role {
+      color: var(--dark);
+      font-weight: 600;
+      margin-bottom: 1rem;
+      padding-bottom: 1rem;
+      border-bottom: 2px dotted var(--primary-yellow);
+    }
+    
+    .team-social {
+      display: flex;
+      justify-content: center;
+      gap: 1rem;
+    }
+    
+    .team-social a {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 40px;
+      height: 40px;
+      background-color: var(--light-yellow);
+      border-radius: 50%;
+      color: var(--primary-red);
+      transition: all 0.3s ease;
+    }
+    
+    .team-social a:hover {
+      background-color: var(--primary-red);
+      color: var(--light);
+      transform: translateY(-3px);
+    }
+    
+    /* Visit Section */
+    .visit-section {
+      padding: 5rem 2rem;
+      background: linear-gradient(135deg, rgba(255,215,0,0.1), rgba(255,165,0,0.1));
+      text-align: center;
+    }
+    
+    .visit-container {
+      max-width: 1000px;
+      margin: 0 auto;
+      background: var(--light);
+      padding: 3rem;
+      border-radius: 20px;
+      box-shadow: 0 15px 35px rgba(0, 0, 0, 0.1);
+    }
+    
+    .visit-info {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 2rem;
+      text-align: left;
+      margin-bottom: 2rem;
+    }
+    
+    .info-card {
+      padding: 1.5rem;
+      background: var(--cream);
+      border-radius: 10px;
+    }
+    
+    .info-card h3 {
+      font-family: 'Fredoka One', cursive;
+      font-size: 1.5rem;
+      color: var(--primary-red);
+      margin-bottom: 1rem;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+    
+    .info-card h3 i {
+      color: var(--primary-yellow);
+    }
+    
+    .info-card p {
+      margin-bottom: 0.5rem;
+    }
+    
+    .map-container {
+      border-radius: 15px;
+      overflow: hidden;
+      box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+    }
+    
+    .map-container iframe {
+      width: 100%;
+      height: 300px;
+      border: none;
+    }
+    
+    /* Footer */
+    footer {
+      background-color: var(--dark);
+      color: var(--light);
+      padding: 3rem 2rem;
+      text-align: center;
+    }
+    
+    .footer-content {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 2rem;
+      max-width: 1200px;
+      margin: 0 auto;
+      text-align: left;
+    }
+    
+    .footer-column h3 {
+      font-family: 'Fredoka One', cursive;
+      font-size: 1.5rem;
+      color: var(--primary-yellow);
+      margin-bottom: 1.5rem;
+    }
+    
+    .footer-column p {
+      margin-bottom: 1rem;
+    }
+    
+    .footer-column a {
+      color: var(--light);
+      text-decoration: none;
+      display: block;
+      margin-bottom: 0.8rem;
+      transition: all 0.3s ease;
+    }
+    
+    .footer-column a:hover {
+      color: var(--primary-yellow);
+      transform: translateX(5px);
+    }
+    
+    .social-links {
+      display: flex;
+      gap: 1rem;
+      margin-top: 1.5rem;
+    }
+    
+    .social-links a {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 40px;
+      height: 40px;
+      background-color: rgba(255,255,255,0.1);
+      border-radius: 50%;
+      color: var(--light);
+      transition: all 0.3s ease;
+    }
+    
+    .social-links a:hover {
+      background-color: var(--primary-yellow);
+      color: var(--dark);
+      transform: translateY(-5px);
+    }
+    
+    .copyright {
+      margin-top: 3rem;
+      padding-top: 1.5rem;
+      border-top: 1px solid rgba(255,255,255,0.1);
+      font-size: 0.9rem;
+    }
+    
+    /* Responsive styles */
+    @media (max-width: 900px) {
+      .nav-items {
+        display: none;
+      }
+      
+      .hamburger {
+        display: flex;
+      }
+      
+      .story-container {
+        grid-template-columns: 1fr;
+        gap: 3rem;
+      }
+      
+      .about-hero h1 {
+        font-size: 2.5rem;
+      }
+    }
+    
+    @media (max-width: 768px) {
+      .navbar {
+        padding: 0.8rem 1rem;
+      }
+      
+      .logo-text {
+        font-size: 1.5rem;
+      }
+      
+      .logo-img {
+        height: 40px;
+        width: 40px;
+      }
+      
+      .about-hero {
+        padding: 4rem 1rem;
+      }
+      
+      .story-section, .values-section, .team-section, .visit-section {
+        padding: 3rem 1rem;
+      }
+    }
+  </style>
+</head>
+<body>
+  <!-- Redesigned Navbar -->
+  <nav class="navbar">
+    <div class="logo-container">
+      <img src="logo.jpg" alt="Wonder Mouth Logo" class="logo-img">
+      <div class="logo-text">Wonder <span>Mouth</span></div>
+    </div>
+    
+    <div class="nav-items">
+      <a href="index.html" class="nav-link">Home</a>
+      <a href="About.html" class="nav-link">About</a>
+      <a href="Menu.html" class="nav-link">Menu</a>
+      <a href="Contact.html" class="nav-link">Contact</a>
+      <button class="cta-button" onclick="location.href='Order.html'">Place Order</button>
+    </div>
+    
+    <button class="hamburger" id="hamburger">
+      <span></span>
+      <span></span>
+      <span></span>
+    </button>
+  </nav>
+  
+  <!-- Mobile Menu -->
+  <div class="mobile-menu" id="mobileMenu">
+    <a href="index.html" class="mobile-nav-link">Home</a>
+    <a href="About.html" class="mobile-nav-link">About</a>
+    <a href="Menu.html" class="mobile-nav-link">Menu</a>
+    <a href="Contact.html" class="mobile-nav-link">Contact</a>
+    <button class="cta-button mobile-cta" onclick="location.href='Order.html'">Place Order</button>
+  </div>
+  
+  <!-- About Hero Section -->
+ 
+  
+  <!-- Story Section -->
+  <section class="story-section">
+    <div class="story-container">
+      <div class="story-image">
+        <img src="logo.jpg" alt="Wonder Mouth Cafe Interior">
+      </div>
+      <div class="story-content">
+        <h2>About Us</h2>
+        <p>Our mission is to deliver meals that actively delight the senses and deeply satisfy cravings with unparalleled speed. We combine a genuine passion for creative cooking with a sharp vision for operational efficiency, proving that you don't have to choose between quality and convenience.</p>
+        <p>What started as a simple idea has blossomed into a beloved local favorite. Today, we are proud to serve hundreds of customers daily, yet we have steadfastly remained true to the original promise that started it all: <span class="highlight">serving exceptionally great food, remarkably fast</span>.</p>
+        <p>At Wonder Mouth, we believe that good food should be accessible to everyone, anytime. That's why we've perfected our processes to ensure you never have to wait long for a delicious, satisfying meal.</p>
+      </div>
+    </div>
+  </section>
+  
+  <!-- Values Section -->
+  <section class="values-section">
+    <h2 class="section-title">Our Values</h2>
+    <div class="values-grid">
+      <div class="value-card">
+        <div class="value-icon">
+          <i class="fas fa-bolt"></i>
+        </div>
+        <h3>Speed & Efficiency</h3>
+        <p>We've perfected our processes to deliver delicious meals in record time without compromising on quality or flavor.</p>
+      </div>
+      
+      <div class="value-card">
+        <div class="value-icon">
+          <i class="fas fa-heart"></i>
+        </div>
+        <h3>Quality Ingredients</h3>
+        <p>We source fresh, high-quality ingredients to ensure every dish is packed with flavor and nutrition.</p>
+      </div>
+      
+      <div class="value-card">
+        <div class="value-icon">
+          <i class="fas fa-users"></i>
+        </div>
+        <h3>Community Focus</h3>
+        <p>We're proud to be part of the local community and strive to create a welcoming space for everyone.</p>
+      </div>
+      
+      <div class="value-card">
+        <div class="value-icon">
+          <i class="fas fa-star"></i>
+        </div>
+        <h3>Consistent Excellence</h3>
+        <p>Every dish that leaves our kitchen meets our high standards of taste, presentation, and quality.</p>
+      </div>
+    </div>
+  </section>
+  
+ 
+  
+  <!-- Visit Section -->
+  <section class="visit-section">
+    <h2 class="section-title">Visit Us</h2>
+    <div class="visit-container">
+      <div class="visit-info">
+        <div class="info-card">
+          <h3><i class="fas fa-map-marker-alt"></i> Location</h3>
+          <p>Ald Estate, 6th Avenue Gwarimpa</p>
+          <p>Abuja, Nigeria</p>
+        </div>
+        
+        <div class="info-card">
+          <h3><i class="fas fa-clock"></i> Hours</h3>
+          <p><strong>Mon-Fri:</strong> 8:00 AM - 10:00 PM</p>
+          <p><strong>Sat-Sun:</strong> 9:00 AM - 11:00 PM</p>
+        </div>
+        
+        <div class="info-card">
+          <h3><i class="fas fa-phone"></i> Contact</h3>
+          <p><strong>Phone:</strong> +234 8160348696</p>
+          <p><strong>Email:</strong> info@wondermouth.com</p>
+        </div>
+      </div>
+      
+      <div class="map-container">
+        <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d126076.25467414607!2d7.368933719531251!3d9.057075999999998!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x104e0b4c2c14d8d5%3A0x6c7c0d928e91c19!2sGwarinpa%2C%20Abuja%2C%20Federal%20Capital%20Territory!5e0!3m2!1sen!2sng!4v1686754327653!5m2!1sen!2sng" allowfullscreen="" loading="lazy"></iframe>
+      </div>
+    </div>
+  </section>
+  
+  <!-- Footer -->
+  <footer>
+    <div class="footer-content">
+      <div class="footer-column">
+        <h3>Wonder Mouth</h3>
+        <p>Where every bite is a delightful surprise and every meal is served with speed and love.</p>
+        <div class="social-links">
+          <a href="https://www.instagram.com/wondermouthcafe/"><i class="fab fa-instagram"></i></a>
+          <a href="#"><i class="fab fa-facebook-f"></i></a>
+          <a href="#"><i class="fab fa-twitter"></i></a>
+          <a href="#"><i class="fab fa-whatsapp"></i></a>
+        </div>
+      </div>
+      
+      <div class="footer-column">
+        <h3>Quick Links</h3>
+        <a href="index.html">Home</a>
+        <a href="About.html">About Us</a>
+        <a href="Menu.html">Menu</a>
+        <a href="Contact.html">Contact</a>
+        <a href="Order.html">Order Online</a>
+      </div>
+      
+      <div class="footer-column">
+        <h3>Contact Info</h3>
+        <p><i class="fas fa-map-marker-alt"></i> Ald Estate, 6th Avenue Gwarimpa, Abuja</p>
+        <p><i class="fas fa-phone"></i> +234 8160348696</p>
+        <p><i class="fas fa-envelope"></i> info@wondermouth.com</p>
+      </div>
+    </div>
+    
+    <div class="copyright">
+      <p>&copy; 2025 Wonder Mouth Cafe. All rights reserved.</p>
+    </div>
+  </footer>
+
+  <script>
+    // Mobile menu functionality
+    const hamburger = document.getElementById('hamburger');
+    const mobileMenu = document.getElementById('mobileMenu');
+    
+    hamburger.addEventListener('click', () => {
+      mobileMenu.classList.toggle('active');
+      hamburger.classList.toggle('active');
+    });
+    
+    // Close mobile menu when clicking outside
+    document.addEventListener('click', (e) => {
+      if (!hamburger.contains(e.target) && !mobileMenu.contains(e.target)) {
+        mobileMenu.classList.remove('active');
+        hamburger.classList.remove('active');
+      }
+    });
+    
+    // Close mobile menu when clicking a link
+    const mobileLinks = document.querySelectorAll('.mobile-nav-link');
+    mobileLinks.forEach(link => {
+      link.addEventListener('click', () => {
+        mobileMenu.classList.remove('active');
+        hamburger.classList.remove('active');
+      });
+    });
+  </script>
+</body>
+</html>
