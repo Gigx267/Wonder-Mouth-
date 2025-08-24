@@ -1,0 +1,2508 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Wonder Mouth Cafe</title>
+    <link rel="icon" type="image/x-icon" href="logo.jpg">
+  <style>
+    /* Base styles */
+    :root {
+      --primary-yellow: #FFD700;
+      --primary-red: #FF4500;
+      --dark-red: #E03C31;
+      --light-yellow: #FFF9C4;
+      --cream: #FFF5E0;
+      --dark: #333333;
+      --light: #ffffff;
+    }
+    
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+    
+    body {
+      font-family: 'Poppins', sans-serif;
+      background-color: var(--cream);
+      color: var(--dark);
+      line-height: 1.6;
+    }
+    
+    /* Redesigned Navbar */
+    .navbar {
+      background-color: var(--light);
+      padding: 0.8rem 2rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+      box-shadow: 0 2px 15px rgba(0, 0, 0, 0.1);
+      border-bottom: 3px solid var(--primary-yellow);
+    }
+    
+    .logo-container {
+      display: flex;
+      align-items: center;
+      gap: 0.8rem;
+    }
+    
+    .logo-img {
+      height: 50px;
+      width: 50px;
+      border-radius: 50%;
+      object-fit: cover;
+      border: 2px solid var(--primary-red);
+    }
+    
+    .logo-text {
+      font-family: 'Fredoka One', cursive;
+      font-size: 1.8rem;
+      color: var(--primary-red);
+      letter-spacing: 0.5px;
+    }
+    
+    .logo-text span {
+      color: var(--primary-yellow);
+    }
+    
+    .nav-items {
+      display: flex;
+      align-items: center;
+      gap: 1.5rem;
+    }
+    
+    .nav-link {
+      color: var(--dark);
+      text-decoration: none;
+      font-weight: 600;
+      font-size: 1rem;
+      padding: 0.5rem 0.8rem;
+      transition: all 0.3s ease;
+      position: relative;
+    }
+    
+    .nav-link:hover {
+      color: var(--primary-red);
+    }
+    
+    .nav-link::after {
+      content: '';
+      position: absolute;
+      width: 0;
+      height: 2px;
+      background-color: var(--primary-yellow);
+      bottom: 0;
+      left: 0;
+      transition: width 0.3s ease;
+    }
+    
+    .nav-link:hover::after {
+      width: 100%;
+    }
+    
+    .cta-button {
+      background-color: var(--primary-red);
+      color: white;
+      border: none;
+      padding: 0.6rem 1.5rem;
+      border-radius: 50px;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      box-shadow: 0 4px 10px rgba(255, 69, 0, 0.3);
+      text-transform: uppercase;
+      font-size: 0.9rem;
+      letter-spacing: 0.5px;
+    }
+    
+    .cta-button:hover {
+      background-color: var(--dark-red);
+      transform: translateY(-2px);
+      box-shadow: 0 6px 15px rgba(255, 69, 0, 0.4);
+    }
+    
+    .hamburger {
+      display: none;
+      flex-direction: column;
+      justify-content: space-around;
+      width: 30px;
+      height: 25px;
+      background: transparent;
+      border: none;
+      cursor: pointer;
+      padding: 0;
+    }
+    
+    .hamburger span {
+      width: 100%;
+      height: 3px;
+      background-color: var(--primary-red);
+      border-radius: 5px;
+      transition: all 0.3s ease;
+    }
+    
+    /* Mobile menu */
+    .mobile-menu {
+      display: none;
+      position: fixed;
+      top: 70px;
+      left: 0;
+      width: 100%;
+      background-color: var(--light);
+      box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+      padding: 1rem 0;
+      z-index: 999;
+    }
+    
+    .mobile-menu.active {
+      display: block;
+    }
+    
+    .mobile-nav-link {
+      display: block;
+      padding: 1rem 2rem;
+      color: var(--dark);
+      text-decoration: none;
+      font-weight: 600;
+      border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+      transition: all 0.3s ease;
+    }
+    
+    .mobile-nav-link:hover {
+      background-color: var(--light-yellow);
+      color: var(--primary-red);
+      padding-left: 2.5rem;
+    }
+    
+    .mobile-cta {
+      display: block;
+      margin: 1rem 2rem;
+      text-align: center;
+    }
+    
+    /* Responsive styles */
+    @media (max-width: 900px) {
+      .nav-items {
+        display: none;
+      }
+      
+      .hamburger {
+        display: flex;
+      }
+    }
+    
+    @media (max-width: 480px) {
+      .navbar {
+        padding: 0.8rem 1rem;
+      }
+      
+      .logo-text {
+        font-size: 1.5rem;
+      }
+      
+      .logo-img {
+        height: 40px;
+        width: 40px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <!-- Redesigned Navbar -->
+  <nav class="navbar">
+    <div class="logo-container">
+      <img src="logo.jpg" alt="Wonder Mouth Logo" class="logo-img">
+      <div class="logo-text">Wonder <span>Mouth</span></div>
+    </div>
+    
+    <div class="nav-items">
+      <a href="index.html" class="nav-link">Home</a>
+      <a href="About.html" class="nav-link">About</a>
+      <a href="Menu.html" class="nav-link">Menu</a>
+      <a href="Contact.html" class="nav-link">Contact</a>
+      <button class="cta-button" onclick="location.href='Order.html'">Place Order</button>
+    </div>
+    
+    <button class="hamburger" id="hamburger">
+      <span></span>
+      <span></span>
+      <span></span>
+    </button>
+  </nav>
+  
+ 
+
+  <script>
+    // Mobile menu functionality
+    const hamburger = document.getElementById('hamburger');
+    const mobileMenu = document.getElementById('mobileMenu');
+    
+    hamburger.addEventListener('click', () => {
+      mobileMenu.classList.toggle('active');
+      hamburger.classList.toggle('active');
+    });
+    
+    // Close mobile menu when clicking outside
+    document.addEventListener('click', (e) => {
+      if (!hamburger.contains(e.target) && !mobileMenu.contains(e.target)) {
+        mobileMenu.classList.remove('active');
+        hamburger.classList.remove('active');
+      }
+    });
+    
+    // Close mobile menu when clicking a link
+    const mobileLinks = document.querySelectorAll('.mobile-nav-link');
+    mobileLinks.forEach(link => {
+      link.addEventListener('click', () => {
+        mobileMenu.classList.remove('active');
+        hamburger.classList.remove('active');
+      });
+    });
+  </script>
+</body>
+</html>
+
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Wonder Mouth Cafe</title>
+  <meta name="description" content="Wonder Mouth cafe - We serve you with instant meals, delicious coffee, and a cozy atmosphere. Where Every Bite is a Delightful Surprise.">
+  
+  <!-- Google Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&family=Fredoka+One&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Caveat:wght@700&family=Comic+Neue:ital,wght@0,700;1,400&display=swap" rel="stylesheet">
+  
+  <!-- Font Awesome -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  
+  <style>
+    :root {
+      --primary-yellow: #FFD700;
+      --primary-red: #FF4500;
+      --dark-red: #E03C31;
+      --light-yellow: #FFF9C4;
+      --cream: #FFF5E0;
+      --dark: #333333;
+      --light: #ffffff;
+    }
+    
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+    
+    body {
+      font-family: 'Poppins', sans-serif;
+      background-color: var(--cream);
+      color: var(--dark);
+      line-height: 1.6;
+      overflow-x: hidden;
+    }
+    
+    /* Redesigned Navbar */
+    .navbar {
+      background-color: var(--light);
+      padding: 0.8rem 2rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+      box-shadow: 0 2px 15px rgba(0, 0, 0, 0.1);
+      border-bottom: 3px solid var(--primary-yellow);
+    }
+    
+    .logo-container {
+      display: flex;
+      align-items: center;
+      gap: 0.8rem;
+    }
+    
+    .logo-img {
+      height: 50px;
+      width: 50px;
+      border-radius: 50%;
+      object-fit: cover;
+      border: 2px solid var(--primary-red);
+    }
+    
+    .logo-text {
+      font-family: 'Fredoka One', cursive;
+      font-size: 1.8rem;
+      color: var(--primary-red);
+      letter-spacing: 0.5px;
+    }
+    
+    .logo-text span {
+      color: var(--primary-yellow);
+    }
+    
+    .nav-items {
+      display: flex;
+      align-items: center;
+      gap: 1.5rem;
+    }
+    
+    .nav-link {
+      color: var(--dark);
+      text-decoration: none;
+      font-weight: 600;
+      font-size: 1rem;
+      padding: 0.5rem 0.8rem;
+      transition: all 0.3s ease;
+      position: relative;
+    }
+    
+    .nav-link:hover {
+      color: var(--primary-red);
+    }
+    
+    .nav-link::after {
+      content: '';
+      position: absolute;
+      width: 0;
+      height: 2px;
+      background-color: var(--primary-yellow);
+      bottom: 0;
+      left: 0;
+      transition: width 0.3s ease;
+    }
+    
+    .nav-link:hover::after {
+      width: 100%;
+    }
+    
+    .cta-button {
+      background-color: var(--primary-red);
+      color: white;
+      border: none;
+      padding: 0.6rem 1.5rem;
+      border-radius: 50px;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      box-shadow: 0 4px 10px rgba(255, 69, 0, 0.3);
+      text-transform: uppercase;
+      font-size: 0.9rem;
+      letter-spacing: 0.5px;
+    }
+    
+    .cta-button:hover {
+      background-color: var(--dark-red);
+      transform: translateY(-2px);
+      box-shadow: 0 6px 15px rgba(255, 69, 0, 0.4);
+    }
+    
+    .hamburger {
+      display: none;
+      flex-direction: column;
+      justify-content: space-around;
+      width: 30px;
+      height: 25px;
+      background: transparent;
+      border: none;
+      cursor: pointer;
+      padding: 0;
+    }
+    
+    .hamburger span {
+      width: 100%;
+      height: 3px;
+      background-color: var(--primary-red);
+      border-radius: 5px;
+      transition: all 0.3s ease;
+    }
+    
+    /* Mobile menu */
+    .mobile-menu {
+      display: none;
+      position: fixed;
+      top: 70px;
+      left: 0;
+      width: 100%;
+      background-color: var(--light);
+      box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+      padding: 1rem 0;
+      z-index: 999;
+    }
+    
+    .mobile-menu.active {
+      display: block;
+    }
+    
+    .mobile-nav-link {
+      display: block;
+      padding: 1rem 2rem;
+      color: var(--dark);
+      text-decoration: none;
+      font-weight: 600;
+      border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+      transition: all 0.3s ease;
+    }
+    
+    .mobile-nav-link:hover {
+      background-color: var(--light-yellow);
+      color: var(--primary-red);
+      padding-left: 2.5rem;
+    }
+    
+    .mobile-cta {
+      display: block;
+      margin: 1rem 2rem;
+      text-align: center;
+    }
+    
+    /* Modern button styles */
+    .btn {
+      display: inline-block;
+      padding: 12px 30px;
+      background-color: var(--primary-red);
+      color: white;
+      font-weight: 600;
+      text-decoration: none;
+      border-radius: 50px;
+      border: none;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      box-shadow: 0 4px 15px rgba(255, 69, 0, 0.3);
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      font-size: 0.9rem;
+    }
+    
+    .btn:hover {
+      background-color: var(--dark-red);
+      transform: translateY(-3px);
+      box-shadow: 0 6px 20px rgba(255, 69, 0, 0.4);
+    }
+    
+    .btn-yellow {
+      background-color: var(--primary-yellow);
+      color: var(--dark);
+    }
+    
+    .btn-yellow:hover {
+      background-color: #FFC000;
+    }
+    
+    /* Hero section */
+    .hero {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 4rem 2rem;
+      background: linear-gradient(135deg, var(--light-yellow), var(--cream));
+      position: relative;
+      overflow: hidden;
+    }
+    
+    .hero-content {
+      flex: 1;
+      max-width: 600px;
+      padding: 2rem;
+    }
+    
+    .hero-title {
+      font-family: 'Fredoka One', cursive;
+      font-size: 3.5rem;
+      color: var(--primary-red);
+      margin-bottom: 1.5rem;
+      line-height: 1.2;
+    }
+    
+    .hero-title span {
+      color: var(--primary-yellow);
+      display: inline-block;
+    }
+    
+    .hero-subtitle {
+      font-size: 1.3rem;
+      color: var(--dark);
+      margin-bottom: 2rem;
+      font-weight: 300;
+    }
+    
+    .hero-image {
+      flex: 1;
+      max-width: 600px;
+      position: relative;
+    }
+    
+    .hero-image img {
+      width: 100%;
+      border-radius: 20px;
+      box-shadow: 20px 20px 0 rgba(255, 69, 0, 0.1);
+      transition: transform 0.5s ease;
+    }
+    
+    .hero-image:hover img {
+      transform: translateY(-10px);
+    }
+    
+    /* About section */
+    .about {
+      padding: 5rem 2rem;
+      text-align: center;
+      background-color: var(--light);
+      position: relative;
+    }
+    
+    .section-title {
+      font-family: 'Fredoka One', cursive;
+      font-size: 2.5rem;
+      color: var(--primary-red);
+      margin-bottom: 3rem;
+      position: relative;
+      display: inline-block;
+    }
+    
+    .section-title::after {
+      content: '';
+      position: absolute;
+      width: 50%;
+      height: 4px;
+      background-color: var(--primary-yellow);
+      bottom: -10px;
+      left: 25%;
+    }
+    
+    .about-content {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 3rem;
+      max-width: 1200px;
+      margin: 0 auto;
+      align-items: center;
+    }
+    
+    .about-text {
+      text-align: left;
+    }
+    
+    .about-text p {
+      margin-bottom: 1.5rem;
+      font-size: 1.1rem;
+    }
+    
+    .about-image {
+      position: relative;
+    }
+    
+    .about-image img {
+      width: 100%;
+      border-radius: 15px;
+      box-shadow: 15px 15px 0 var(--light-yellow);
+    }
+    
+    /* Bento Menu Section */
+    .bento-menu {
+      padding: 2rem;
+      background: #FFF5E0 url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M0 0h60v60H0z' fill='none'/%3E%3Cpath d='M20 20h20v20H20z' stroke='%23FFD700' stroke-width='1' stroke-dasharray='3,3' fill='none'/%3E%3C/svg%3E");
+      font-family: 'Comic Neue', cursive;
+    }
+    
+    .bento-box {
+      max-width: 800px;
+      margin: 0 auto;
+      border-radius: 15px;
+      background: var(--cream);
+      box-shadow: 10px 10px 0 rgba(0,0,0,0.1);
+      overflow: hidden;
+      position: relative;
+      border: 3px solid #333;
+    }
+    
+    .bento-lid {
+      background: var(--primary-red);
+      padding: 1rem;
+      text-align: center;
+      position: relative;
+      border-bottom: 3px dashed #333;
+    }
+    
+    .bento-title {
+      font-family: 'Caveat', cursive;
+      font-size: 3.5rem;
+      color: white;
+      margin: 0;
+      text-shadow: 3px 3px 0 rgba(0,0,0,0.2);
+      transform: rotate(-1deg);
+      display: inline-block;
+    }
+    
+    .lid-handle {
+      position: absolute;
+      right: 20px;
+      top: 50%;
+      transform: translateY(-50%);
+      font-size: 1.5rem;
+      color: white;
+      writing-mode: vertical-rl;
+    }
+    
+    .bento-grid {
+      display: grid;
+      grid-template-areas:
+        "main sides"
+        "drinks extras";
+      grid-template-columns: 1fr 1fr;
+      gap: 0;
+      padding: 0;
+      position: relative;
+    }
+    
+    .bento-cell {
+      padding: 1.5rem;
+      background: var(--cell-bg);
+      position: relative;
+      min-height: 200px;
+      border-right: 2px dotted #333;
+      border-bottom: 2px dotted #333;
+    }
+    
+    .bento-cell:nth-child(2n) {
+      border-right: none;
+    }
+    
+    .bento-cell:nth-last-child(-n+2) {
+      border-bottom: none;
+    }
+    
+    .cell-label {
+      font-family: 'Caveat', cursive;
+      font-size: 2rem;
+      color: #FF4500;
+      margin: 0 0 1rem 0;
+      display: inline-block;
+      background: white;
+      padding: 0.2rem 1rem;
+      border-radius: 50px;
+      border: 2px solid #333;
+    }
+    
+    .bento-items {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+      font-size: 1.3rem;
+    }
+    
+    .bento-items li {
+      margin-bottom: 0.8rem;
+      position: relative;
+      padding-left: 1.5rem;
+    }
+    
+    .bento-items li::before {
+      content: "·";
+      position: absolute;
+      left: 0;
+      font-size: 2rem;
+      line-height: 1;
+      color: #FF4500;
+      top: -0.3rem;
+    }
+    
+    .price {
+      display: inline-block;
+      background: #FFD700;
+      color: #333;
+      padding: 0.2rem 0.8rem;
+      border-radius: 50px;
+      font-weight: bold;
+      font-family: 'Caveat', cursive;
+      font-size: 1.2rem;
+      transform: 
+        translateX(var(--x)) 
+        translateY(var(--y)) 
+        rotate(calc(var(--x) * 0.5deg));
+      position: relative;
+      border: 1px dashed #333;
+    }
+    
+    .price.hot {
+      background: #FF4500;
+      color: white;
+      animation: bounce 1s infinite alternate;
+    }
+    
+    .price.small {
+      font-size: 1rem;
+      padding: 0.1rem 0.6rem;
+    }
+    
+    @keyframes bounce {
+      to { transform: translateY(-5px) rotate(2deg); }
+    }
+    
+    .bento-doodle {
+      position: absolute;
+      bottom: 10px;
+      right: 10px;
+      font-size: 1.5rem;
+      opacity: 0.2;
+    }
+    
+    .bento-note {
+      text-align: center;
+      padding: 1rem;
+      font-size: 1.1rem;
+      color: #666;
+      border-top: 2px dotted #333;
+    }
+    
+    /* Specials section */
+    .specials {
+      padding: 5rem 2rem;
+      background-color: var(--primary-red);
+      color: var(--light);
+      text-align: center;
+    }
+    
+    .specials-content {
+      max-width: 800px;
+      margin: 0 auto;
+    }
+    
+    .specials-title {
+      font-family: 'Fredoka One', cursive;
+      font-size: 2.5rem;
+      margin-bottom: 1.5rem;
+    }
+    
+    .specials-text {
+      font-size: 1.1rem;
+      margin-bottom: 2rem;
+    }
+    
+    .specials-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 2rem;
+      margin: 3rem auto;
+    }
+    
+    .special-item {
+      background-color: rgba(255,255,255,0.1);
+      padding: 2rem;
+      border-radius: 15px;
+      transition: all 0.3s ease;
+    }
+    
+    .special-item:hover {
+      background-color: rgba(255,255,255,0.2);
+      transform: translateY(-5px);
+    }
+    
+    .special-item i {
+      font-size: 2.5rem;
+      color: var(--primary-yellow);
+      margin-bottom: 1rem;
+    }
+    
+    .special-item h3 {
+      font-size: 1.3rem;
+      margin-bottom: 1rem;
+    }
+    
+    /* Contact section */
+    .contact {
+      padding: 5rem 2rem;
+      background-color: var(--light);
+      text-align: center;
+    }
+    
+    .contact-container {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 3rem;
+      max-width: 1200px;
+      margin: 0 auto;
+      align-items: center;
+    }
+    
+    .contact-info {
+      text-align: left;
+    }
+    
+    .contact-info h3 {
+      font-family: 'Fredoka One', cursive;
+      font-size: 1.8rem;
+      color: var(--primary-red);
+      margin-bottom: 1.5rem;
+    }
+    
+    .contact-detail {
+      display: flex;
+      align-items: center;
+      margin-bottom: 1.5rem;
+    }
+    
+    .contact-detail i {
+      width: 40px;
+      height: 40px;
+      background-color: var(--primary-yellow);
+      color: var(--dark);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-right: 1rem;
+    }
+    
+    .contact-form {
+      background-color: var(--light-yellow);
+      padding: 2rem;
+      border-radius: 15px;
+      box-shadow: 10px 10px 0 rgba(255, 69, 0, 0.1);
+    }
+    
+    .form-group {
+      margin-bottom: 1.5rem;
+      text-align: left;
+    }
+    
+    .form-group label {
+      display: block;
+      font-weight: 600;
+      margin-bottom: 0.5rem;
+      color: var(--dark);
+    }
+    
+    .form-group input,
+    .form-group textarea {
+      width: 100%;
+      padding: 0.8rem 1rem;
+      border: 2px solid #ddd;
+      border-radius: 8px;
+      font-family: 'Poppins', sans-serif;
+      font-size: 1rem;
+      transition: all 0.3s ease;
+    }
+    
+    .form-group input:focus,
+    .form-group textarea:focus {
+      border-color: var(--primary-yellow);
+      outline: none;
+      box-shadow: 0 0 0 3px rgba(255, 215, 0, 0.2);
+    }
+    
+    /* Footer */
+    footer {
+      background-color: var(--dark);
+      color: var(--light);
+      padding: 3rem 2rem;
+      text-align: center;
+    }
+    
+    .footer-content {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 2rem;
+      max-width: 1200px;
+      margin: 0 auto;
+      text-align: left;
+    }
+    
+    .footer-column h3 {
+      font-family: 'Fredoka One', cursive;
+      font-size: 1.5rem;
+      color: var(--primary-yellow);
+      margin-bottom: 1.5rem;
+    }
+    
+    .footer-column p {
+      margin-bottom: 1rem;
+    }
+    
+    .footer-column a {
+      color: var(--light);
+      text-decoration: none;
+      display: block;
+      margin-bottom: 0.8rem;
+      transition: all 0.3s ease;
+    }
+    
+    .footer-column a:hover {
+      color: var(--primary-yellow);
+      transform: translateX(5px);
+    }
+    
+    .social-links {
+      display: flex;
+      gap: 1rem;
+      margin-top: 1.5rem;
+    }
+    
+    .social-links a {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 40px;
+      height: 40px;
+      background-color: rgba(255,255,255,0.1);
+      border-radius: 50%;
+      color: var(--light);
+      transition: all 0.3s ease;
+    }
+    
+    .social-links a:hover {
+      background-color: var(--primary-yellow);
+      color: var(--dark);
+      transform: translateY(-5px);
+    }
+    
+    .copyright {
+      margin-top: 3rem;
+      padding-top: 1.5rem;
+      border-top: 1px solid rgba(255,255,255,0.1);
+      font-size: 0.9rem;
+    }
+    
+    /* Responsive styles */
+    @media (max-width: 1024px) {
+      .hero-title {
+        font-size: 3rem;
+      }
+    }
+    
+    @media (max-width: 900px) {
+      .nav-items {
+        display: none;
+      }
+      
+      .hamburger {
+        display: flex;
+      }
+      
+      .hero {
+        flex-direction: column;
+        text-align: center;
+      }
+      
+      .hero-content {
+        margin-bottom: 3rem;
+      }
+      
+      .hero-title {
+        font-size: 2.5rem;
+      }
+      
+      .section-title {
+        font-size: 2rem;
+      }
+    }
+    
+    @media (max-width: 768px) {
+      .bento-grid {
+        grid-template-areas:
+          "main"
+          "sides"
+          "drinks"
+          "extras";
+        grid-template-columns: 1fr;
+      }
+      
+      .bento-cell {
+        border-right: none !important;
+        border-bottom: 2px dotted #333 !important;
+      }
+      
+      .bento-cell:last-child {
+        border-bottom: none !important;
+      }
+      
+      .bento-title {
+        font-size: 2.5rem;
+      }
+      
+      .cell-label {
+        font-size: 1.8rem;
+      }
+      
+      .bento-items {
+        font-size: 1.1rem;
+      }
+    }
+    
+    @media (max-width: 480px) {
+      .navbar {
+        padding: 0.8rem 1rem;
+      }
+      
+      .logo-text {
+        font-size: 1.5rem;
+      }
+      
+      .logo-img {
+        height: 40px;
+        width: 40px;
+      }
+      
+      .hero-title {
+        font-size: 2rem;
+      }
+      
+      .btn {
+        padding: 0.8rem 1.5rem;
+        font-size: 0.8rem;
+      }
+    }
+  </style>
+</head>
+<body>
+
+    
+    
+    
+    
+  
+  <!-- Mobile Menu -->
+  <div class="mobile-menu" id="mobileMenu">
+    <a href="index.html" class="mobile-nav-link">Home</a>
+    <a href="About.html" class="mobile-nav-link">About</a>
+    <a href="Menu.html" class="mobile-nav-link">Menu</a>
+    <a href="Contact.html" class="mobile-nav-link">Contact</a>
+    <button class="cta-button mobile-cta" onclick="location.href='Order.html'">Place Order</button>
+  </div>
+  
+  <section class="hero">
+    <div class="hero-content">
+      <h1 class="hero-title">Tasty Meals in Seconds <span>Fresh Fast and Just For You</span></h1>
+      <p class="hero-subtitle">Whether you're craving a hearty bite or a light snack, our menu is packed with mouthwatering flavors that are ready in seconds—because great food shouldn't keep you waiting.</p>
+      <div class="hero-buttons">
+        <a href="Menu.html" class="btn">View Menu</a>
+        <a href="Order.html" class="btn btn-yellow">Order Online</a>
+      </div>
+    </div>
+    <div class="hero-image">
+      <img src="https://cdn.dribbble.com/userupload/22388536/file/original-2ee067e7cd1b141922b95335b27a1f38.gif" alt="Colorful cafe drinks">
+    </div>
+  </section>
+  
+
+  
+ <!-- Menu Filter -->
+  <div class="menu-filter">
+    <div class="filter-buttons">
+      <button class="filter-button active" data-category="all">All Items</button>
+      <button class="filter-button" data-category="mains">Main Dishes</button>
+      <button class="filter-button" data-category="sides">Sides</button>
+      <button class="filter-button" data-category="drinks">Drinks</button>
+    </div>
+  </div>
+  <section class="menu-section">
+  <div class="section-header">
+    <h2 class="section-title">Shawarma</h2>
+    <p>Savory wraps filled with your choice of meat and fresh vegetables.</p>
+  </div>
+  
+  <div class="menu-grid">
+    <div class="menu-item" data-category="mains">
+      <img src="world-cuisine-with-delicious-food.jpg" alt="Chicken Shawarma" class="menu-item-image">
+      <div class="menu-item-content">
+        <div class="menu-item-header">
+          <h3 class="menu-item-title">Chicken Shawarma (No Sausage)</h3>
+          <div class="menu-item-price">₦3,000</div>
+        </div>
+        <p class="menu-item-description">Classic chicken shawarma with juicy chicken, fresh veggies, and creamy sauce.</p>
+        <div class="menu-item-footer">
+          <div class="menu-item-tags">
+            <span class="menu-tag">New</span>
+          </div>
+          <button class="add-to-cart">
+            <i class="fas fa-plus"></i>
+          </button>
+        </div>
+      </div>
+    </div>
+    
+    <div class="menu-item" data-category="mains">
+      <img src="world-cuisine-with-delicious-food.jpg" alt="Chicken Shawarma with Two Sausages" class="menu-item-image">
+      <div class="menu-item-content">
+        <div class="menu-item-header">
+          <h3 class="menu-item-title">Chicken Shawarma with Two Sausages</h3>
+          <div class="menu-item-price">₦3,500</div>
+        </div>
+        <p class="menu-item-description">Our popular chicken shawarma with the addition of two savory sausages.</p>
+        <div class="menu-item-footer">
+          <div class="menu-item-tags">
+            <span class="menu-tag">Popular</span>
+          </div>
+          <button class="add-to-cart">
+            <i class="fas fa-plus"></i>
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <div class="menu-item" data-category="mains">
+      <img src="world-cuisine-with-delicious-food.jpg" alt="Chicken Shawarma with Double Sausage" class="menu-item-image">
+      <div class="menu-item-content">
+        <div class="menu-item-header">
+          <h3 class="menu-item-title">Chicken Shawarma with 2 Sausages</h3>
+          <div class="menu-item-price">₦4,000</div>
+        </div>
+        <p class="menu-item-description">For the sausage lovers! Our classic shawarma with an extra two sausages.</p>
+        <div class="menu-item-footer">
+          <div class="menu-item-tags">
+      
+          </div>
+          <button class="add-to-cart">
+            <i class="fas fa-plus"></i>
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+  <section class="menu-section">
+  <div class="section-header">
+    <h2 class="section-title">Wonder Cow</h2>
+    <p>Hearty meals to satisfy your cravings, from a classic rice dish to a special noodle creation.</p>
+  </div>
+  
+  <div class="menu-grid">
+    <div class="menu-item" data-category="mains">
+      <img src="https://plus.unsplash.com/premium_photo-1694141252026-3df1de888a21?w=600&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8NXx8Sm9sbG9mJTIwcmljZXxlbnwwfHwwfHx8MA%3D%3D" alt="Jollof Rice" class="menu-item-image">
+      <div class="menu-item-content">
+        <div class="menu-item-header">
+          <h3 class="menu-item-title">Jollof Rice</h3>
+          <div class="menu-item-price">₦2,000</div>
+        </div>
+        <p class="menu-item-description">A classic and flavorful dish of rice simmered in a rich tomato and pepper sauce.</p>
+        <div class="menu-item-footer">
+          <div class="menu-item-tags">
+            
+          </div>
+          <button class="add-to-cart">
+            <i class="fas fa-plus"></i>
+          </button>
+        </div>
+      </div>
+    </div>
+    
+    <div class="menu-item" data-category="mains">
+      <img src="https://plus.unsplash.com/premium_photo-1694547926001-f2151e4a476b?w=600&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8NXx8Tm9vZGxlc3xlbnwwfHwwfHx8MA%3D%3D" alt="Special Noodles" class="menu-item-image">
+      <div class="menu-item-content">
+        <div class="menu-item-header">
+          <h3 class="menu-item-title">Special Noodles</h3>
+          <div class="menu-item-price">₦3,500</div>
+        </div>
+        <p class="menu-item-description">Our signature noodle dish with a unique blend of spices and savory toppings.</p>
+        <div class="menu-item-footer">
+          <div class="menu-item-tags">
+            <span class="menu-tag">Chef's Special</span>
+          </div>
+          <button class="add-to-cart">
+            <i class="fas fa-plus"></i>
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <div class="menu-item" data-category="sides">
+      <img src="https://images.unsplash.com/photo-1702288824191-3003d32484b1?w=600&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8NHx8Q29va2VkJTIwQmVlZnxlbnwwfHwwfHx8MA%3D%3D" alt="Beef" class="menu-item-image">
+      <div class="menu-item-content">
+        <div class="menu-item-header">
+          <h3 class="menu-item-title">Beef</h3>
+          <div class="menu-item-price">₦500</div>
+        </div>
+        <p class="menu-item-description">Tender and grilled beef pieces, perfect as an add-on.</p>
+        <div class="menu-item-footer">
+          <div class="menu-item-tags">
+            
+          </div>
+          <button class="add-to-cart">
+            <i class="fas fa-plus"></i>
+          </button>
+        </div>
+      </div>
+    </div>
+    
+    <div class="menu-item" data-category="sides">
+      <img src="https://images.unsplash.com/photo-1600555379765-f82335a7b1b0?w=600&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Nnx8Q29va2VkJTIwY2hpY2tlbnxlbnwwfHwwfHx8MA%3D%3D" alt="Chicken" class="menu-item-image">
+      <div class="menu-item-content">
+        <div class="menu-item-header">
+          <h3 class="menu-item-title">Chicken</h3>
+          <div class="menu-item-price">₦3,000</div>
+        </div>
+        <p class="menu-item-description">A juicy, savory chicken portion to complement your meal.</p>
+        <div class="menu-item-footer">
+          <div class="menu-item-tags">
+            
+          </div>
+          <button class="add-to-cart">
+            <i class="fas fa-plus"></i>
+          </button>
+        </div>
+      </div>
+    </div>
+    
+    <div class="menu-item" data-category="sides">
+      <img src="https://images.unsplash.com/photo-1584776296944-ab6fb57b0bdd?w=600&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTB8fHRvYXN0fGVufDB8fDB8fHww" alt="Toasted Bread" class="menu-item-image">
+      <div class="menu-item-content">
+        <div class="menu-item-header">
+          <h3 class="menu-item-title">Toasted Bread</h3>
+          <div class="menu-item-price">₦2,500</div>
+        </div>
+        <p class="menu-item-description">Crispy toasted bread, a great side for any dish.</p>
+        <div class="menu-item-footer">
+          <div class="menu-item-tags">
+            
+          </div>
+          <button class="add-to-cart">
+            <i class="fas fa-plus"></i>
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+  <section class="menu-section">
+    <div class="section-header">
+      <h2 class="section-title">Chips </h2>
+      <p>Hearty and delicious meals to satisfy your cravings</p>
+    </div>
+    
+    <div class="menu-grid">
+      <div class="menu-item" data-category="mains">
+        <img src="c&e.jpg" alt="Chips & Egg" class="menu-item-image">
+        <div class="menu-item-content">
+          <div class="menu-item-header">
+            <h3 class="menu-item-title">Chips & Egg</h3>
+            <div class="menu-item-price">₦3,000</div>
+          </div>
+          <p class="menu-item-description">Crispy chips served with a perfectly fried egg.</p>
+          <div class="menu-item-footer">
+            <div class="menu-item-tags">
+              <span class="menu-tag">Popular</span>
+            </div>
+            <button class="add-to-cart">
+              <i class="fas fa-plus"></i>
+            </button>
+          </div>
+        </div>
+      </div>
+      
+     
+      
+      <div class="menu-item" data-category="mains">
+        <img src="delicious-foods-celebration.jpg" alt="Chips & Chicken" class="menu-item-image">
+        <div class="menu-item-content">
+          <div class="menu-item-header">
+            <h3 class="menu-item-title">Chips & Chicken</h3>
+            <div class="menu-item-price">₦5,000</div>
+          </div>
+          <p class="menu-item-description">A classic combo of crispy chips and savory grilled chicken.</p>
+          <div class="menu-item-footer">
+            <div class="menu-item-tags">
+              <span class="menu-tag">Best Seller</span>
+            </div>
+            <button class="add-to-cart">
+              <i class="fas fa-plus"></i>
+            </button>
+          </div>
+        </div>
+      </div>
+       <div class="menu-item" data-category="mains">
+        <img src="crispy-french-fries-with-ketchup-mayonnaise.jpg" alt="Chips & Chicken" class="menu-item-image">
+        <div class="menu-item-content">
+          <div class="menu-item-header">
+            <h3 class="menu-item-title">Chips,Egg & Sauce </h3>
+            <div class="menu-item-price">₦3,500</div>
+          </div>
+          <p class="menu-item-description">A classic combo of crispy chips and savory Egg with sauce .</p>
+          <div class="menu-item-footer">
+            <div class="menu-item-tags">
+             
+            </div>
+            <button class="add-to-cart">
+              <i class="fas fa-plus"></i>
+            </button>
+          </div>
+        </div>
+      </div>
+     
+        </div>
+      </div>
+    </div>
+  </section>
+  <section class="menu-section">
+  <div class="section-header">
+    <h2 class="section-title">Tea & Coffee</h2>
+    <p>A perfect complement to your meal, or a delightful treat on its own.</p>
+  </div>
+  
+  <div class="menu-grid">
+    <div class="menu-item" data-category="drinks">
+      <img src="fresh-black-tea-with-lemon-slices.jpg" alt="Arabian Tea (BIG cup)" class="menu-item-image">
+      <div class="menu-item-content">
+        <div class="menu-item-header">
+          <h3 class="menu-item-title">Arabian Tea (BIG cup)</h3>
+          <div class="menu-item-price">₦1,500</div>
+        </div>
+        <p class="menu-item-description">A large cup of our aromatic Arabian tea, perfect for a relaxing moment.</p>
+        <div class="menu-item-footer">
+          <div class="menu-item-tags">
+            <span class="menu-tag">Popular</span>
+          </div>
+          <button class="add-to-cart">
+            <i class="fas fa-plus"></i>
+          </button>
+        </div>
+      </div>
+    </div>
+    
+    <div class="menu-item" data-category="drinks">
+      <img src="fresh-black-tea-with-lemon-slices.jpg" alt="Arabian Tea (SMALL cup)" class="menu-item-image">
+      <div class="menu-item-content">
+        <div class="menu-item-header">
+          <h3 class="menu-item-title">Arabian Tea (SMALL cup)</h3>
+          <div class="menu-item-price">₦1,000</div>
+        </div>
+        <p class="menu-item-description">A small, refreshing cup of our traditional Arabian tea.</p>
+        <div class="menu-item-footer">
+          <div class="menu-item-tags">
+            
+          </div>
+          <button class="add-to-cart">
+            <i class="fas fa-plus"></i>
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <div class="menu-item" data-category="drinks">
+      <img src="close-up-fragrant-tea-dry-date.jpg" alt="Arabian Tea (BIG Jug)" class="menu-item-image">
+      <div class="menu-item-content">
+        <div class="menu-item-header">
+          <h3 class="menu-item-title">Arabian Tea (BIG Jug)</h3>
+          <div class="menu-item-price">₦3,000</div>
+        </div>
+        <p class="menu-item-description">A large jug of Arabian tea, ideal for sharing with friends or family.</p>
+        <div class="menu-item-footer">
+          <div class="menu-item-tags">
+            <span class="menu-tag">Best Seller</span>
+          </div>
+          <button class="add-to-cart">
+            <i class="fas fa-plus"></i>
+          </button>
+        </div>
+      </div>
+    </div>
+    
+    <div class="menu-item" data-category="drinks">
+      <img src="close-up-fragrant-tea-dry-date.jpg" alt="Arabian Tea (Small Jug)" class="menu-item-image">
+      <div class="menu-item-content">
+        <div class="menu-item-header">
+          <h3 class="menu-item-title">Arabian Tea (Small Jug)</h3>
+          <div class="menu-item-price">₦2,000</div>
+        </div>
+        <p class="menu-item-description">A small jug of our classic Arabian tea.</p>
+        <div class="menu-item-footer">
+          <div class="menu-item-tags">
+            
+          </div>
+          <button class="add-to-cart">
+            <i class="fas fa-plus"></i>
+          </button>
+        </div>
+      </div>
+    </div>
+    
+    <div class="menu-item" data-category="drinks">
+      <img src="steaming-cup-chai-tea-with-star-anise-cinnamon-sticks-cloves-black-surface.jpg" alt="Coffee Tea" class="menu-item-image">
+      <div class="menu-item-content">
+        <div class="menu-item-header">
+          <h3 class="menu-item-title">Coffee Tea</h3>
+          <div class="menu-item-price">₦1,200</div>
+        </div>
+        <p class="menu-item-description">A unique blend of strong coffee and aromatic tea for a perfect morning boost.</p>
+        <div class="menu-item-footer">
+          <div class="menu-item-tags">
+            
+          </div>
+          <button class="add-to-cart">
+            <i class="fas fa-plus"></i>
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+<section class="menu-section">
+  <div class="section-header">
+    <h2 class="section-title">Coconut Way</h2>
+    <p>Refreshing drinks and unique treats for a quick and delicious escape.</p>
+  </div>
+  
+  <div class="menu-grid">
+    <div class="menu-item" data-category="drinks">
+      <img src="cococ.jpg" alt="Coconut Garri Milk & Sugar (Take Away)" class="menu-item-image">
+      <div class="menu-item-content">
+        <div class="menu-item-header">
+          <h3 class="menu-item-title">Coconut Garri Milk & Sugar (Take Away)</h3>
+          <div class="menu-item-price">₦1,700</div>
+        </div>
+        <p class="menu-item-description">A refreshing take-away cup of chilled garri mixed with sweet coconut milk and sugar.</p>
+        <div class="menu-item-footer">
+          <div class="menu-item-tags">
+            <span class="menu-tag">Specialty</span>
+          </div>
+          <button class="add-to-cart">
+            <i class="fas fa-plus"></i>
+          </button>
+        </div>
+      </div>
+    </div>
+    
+    <div class="menu-item" data-category="drinks">
+      <img src="cococ.jpg" alt="Coconut Garri Refill" class="menu-item-image">
+      <div class="menu-item-content">
+        <div class="menu-item-header">
+          <h3 class="menu-item-title">Coconut Garri Refill</h3>
+          <div class="menu-item-price">₦1,000</div>
+        </div>
+        <p class="menu-item-description">Get a discounted refill of your favorite Coconut Garri Milk & Sugar drink.</p>
+        <div class="menu-item-footer">
+          <div class="menu-item-tags">
+            
+          </div>
+          <button class="add-to-cart">
+            <i class="fas fa-plus"></i>
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+<section class="menu-section">
+  <div class="section-header">
+    <h2 class="section-title">Zobo Fruta</h2>
+    <p>Enjoy our refreshing and healthy Zobo drink, made from hibiscus flowers and natural flavors.</p>
+  </div>
+  
+  <div class="menu-grid">
+    <div class="menu-item" data-category="drinks">
+      <img src="zobo.jpg" alt="Big Zobo" class="menu-item-image">
+      <div class="menu-item-content">
+        <div class="menu-item-header">
+          <h3 class="menu-item-title">Big Zobo</h3>
+          <div class="menu-item-price">₦1,500</div>
+        </div>
+        <p class="menu-item-description">A large, chilled bottle of our signature Zobo drink, perfect for sharing.</p>
+        <div class="menu-item-footer">
+          <div class="menu-item-tags">
+            
+          </div>
+          <button class="add-to-cart">
+            <i class="fas fa-plus"></i>
+          </button>
+        </div>
+      </div>
+    </div>
+    
+    <div class="menu-item" data-category="drinks">
+      <img src="zobo.jpg" alt="Small Zobo" class="menu-item-image">
+      <div class="menu-item-content">
+        <div class="menu-item-header">
+          <h3 class="menu-item-title">Small Zobo</h3>
+          <div class="menu-item-price">₦1,000</div>
+        </div>
+        <p class="menu-item-description">A refreshing small bottle of our delicious Zobo drink.</p>
+        <div class="menu-item-footer">
+          <div class="menu-item-tags">
+            <span class="menu-tag">Popular</span>
+          </div>
+          <button class="add-to-cart">
+            <i class="fas fa-plus"></i>
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <div class="menu-item" data-category="drinks">
+      <img src="zobo.jpg" alt="Smallest Zobo" class="menu-item-image">
+      <div class="menu-item-content">
+        <div class="menu-item-header">
+          <h3 class="menu-item-title">Smallest Zobo</h3>
+          <div class="menu-item-price">₦500</div>
+        </div>
+        <p class="menu-item-description">A quick and convenient serving of our zobo, perfect for a single person.</p>
+        <div class="menu-item-footer">
+          <div class="menu-item-tags">
+            
+          </div>
+          <button class="add-to-cart">
+            <i class="fas fa-plus"></i>
+          </button>
+        </div>
+      </div>
+    </div>
+    
+    <div class="menu-item" data-category="drinks">
+      <img src="zobo.jpg" alt="Zobo Refill" class="menu-item-image">
+      <div class="menu-item-content">
+        <div class="menu-item-header">
+          <h3 class="menu-item-title">Zobo Refill</h3>
+          <div class="menu-item-price">₦500</div>
+        </div>
+        <p class="menu-item-description">Get a discounted refill of your Zobo drink.</p>
+        <div class="menu-item-footer">
+          <div class="menu-item-tags">
+            
+          </div>
+          <button class="add-to-cart">
+            <i class="fas fa-plus"></i>
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+  
+  <!-- Back to top button -->
+  <a href="#" class="back-to-top" id="backToTop" aria-label="Back to top">
+    <i class="fas fa-arrow-up"></i>
+  </a>
+
+  
+  <style>
+    :root {
+      --primary-yellow: #FFD700;
+      --primary-red: #FF4500;
+      --dark-red: #E03C31;
+      --light-yellow: #FFF9C4;
+      --cream: #FFF5E0;
+      --dark: #333333;
+      --light: #ffffff;
+    }
+    
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+    
+    body {
+      font-family: 'Poppins', sans-serif;
+      background-color: var(--cream);
+      color: var(--dark);
+      line-height: 1.6;
+      padding: 0;
+      margin: 0;
+    }
+    
+    /* Redesigned Navbar */
+    .navbar {
+      background-color: var(--light);
+      padding: 0.8rem 2rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+      box-shadow: 0 2px 15px rgba(0, 0, 0, 0.1);
+      border-bottom: 3px solid var(--primary-yellow);
+    }
+    
+    .logo-container {
+      display: flex;
+      align-items: center;
+      gap: 0.8rem;
+    }
+    
+    .logo-img {
+      height: 50px;
+      width: 50px;
+      border-radius: 50%;
+      object-fit: cover;
+      border: 2px solid var(--primary-red);
+    }
+    
+    .logo-text {
+      font-family: 'Fredoka One', cursive;
+      font-size: 1.8rem;
+      color: var(--primary-red);
+      letter-spacing: 0.5px;
+    }
+    
+    .logo-text span {
+      color: var(--primary-yellow);
+    }
+    
+    .nav-items {
+      display: flex;
+      align-items: center;
+      gap: 1.5rem;
+    }
+    
+    .nav-link {
+      color: var(--dark);
+      text-decoration: none;
+      font-weight: 600;
+      font-size: 1rem;
+      padding: 0.5rem 0.8rem;
+      transition: all 0.3s ease;
+      position: relative;
+    }
+    
+    .nav-link:hover {
+      color: var(--primary-red);
+    }
+    
+    .nav-link::after {
+      content: '';
+      position: absolute;
+      width: 0;
+      height: 2px;
+      background-color: var(--primary-yellow);
+      bottom: 0;
+      left: 0;
+      transition: width 0.3s ease;
+    }
+    
+    .nav-link:hover::after {
+      width: 100%;
+    }
+    
+    .cta-button {
+      background-color: var(--primary-red);
+      color: white;
+      border: none;
+      padding: 0.6rem 1.5rem;
+      border-radius: 50px;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      box-shadow: 0 4px 10px rgba(255, 69, 0, 0.3);
+      text-transform: uppercase;
+      font-size: 0.9rem;
+      letter-spacing: 0.5px;
+    }
+    
+    .cta-button:hover {
+      background-color: var(--dark-red);
+      transform: translateY(-2px);
+      box-shadow: 0 6px 15px rgba(255, 69, 0, 0.4);
+    }
+    
+    .hamburger {
+      display: none;
+      flex-direction: column;
+      justify-content: space-around;
+      width: 30px;
+      height: 25px;
+      background: transparent;
+      border: none;
+      cursor: pointer;
+      padding: 0;
+    }
+    
+    .hamburger span {
+      width: 100%;
+      height: 3px;
+      background-color: var(--primary-red);
+      border-radius: 5px;
+      transition: all 0.3s ease;
+    }
+    
+    /* Mobile menu */
+    .mobile-menu {
+      display: none;
+      position: fixed;
+      top: 70px;
+      left: 0;
+      width: 100%;
+      background-color: var(--light);
+      box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+      padding: 1rem 0;
+      z-index: 999;
+    }
+    
+    .mobile-menu.active {
+      display: block;
+    }
+    
+    .mobile-nav-link {
+      display: block;
+      padding: 1rem 2rem;
+      color: var(--dark);
+      text-decoration: none;
+      font-weight: 600;
+      border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+      transition: all 0.3s ease;
+    }
+    
+    .mobile-nav-link:hover {
+      background-color: var(--light-yellow);
+      color: var(--primary-red);
+      padding-left: 2.5rem;
+    }
+    
+    .mobile-cta {
+      display: block;
+      margin: 1rem 2rem;
+      text-align: center;
+    }
+    
+    /* Menu Hero Section - More Compact */
+    .menu-hero {
+      padding: 4rem 2rem 2rem;
+      text-align: center;
+      background: linear-gradient(135deg, rgba(255,215,0,0.15), rgba(255,165,0,0.15)), url('./logo.jpg');
+      background-size: cover;
+      background-position: center;
+      position: relative;
+      color: var(--dark);
+    }
+    
+    .menu-hero::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: rgba(255, 255, 255, 0.85);
+    }
+    
+    .menu-hero-content {
+      position: relative;
+      z-index: 2;
+      max-width: 800px;
+      margin: 0 auto;
+    }
+    
+    .menu-hero h1 {
+      font-family: 'Fredoka One', cursive;
+      font-size: 2.8rem;
+      color: var(--primary-red);
+      margin-bottom: 1rem;
+    }
+    
+    .menu-hero h1 span {
+      color: var(--primary-yellow);
+    }
+    
+    .menu-hero p {
+      font-size: 1.1rem;
+      margin-bottom: 1.5rem;
+    }
+    
+    /* Category Navigation */
+    .category-nav {
+      background-color: var(--light);
+      padding: 1rem;
+      position: sticky;
+      top: 70px;
+      z-index: 900;
+      box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+      overflow-x: auto;
+      white-space: nowrap;
+      scrollbar-width: none;
+    }
+    
+    .category-nav::-webkit-scrollbar {
+      display: none;
+    }
+    
+    .category-links {
+      display: flex;
+      justify-content: center;
+      gap: 0.8rem;
+      max-width: 1000px;
+      margin: 0 auto;
+    }
+    
+    .category-link {
+      padding: 0.5rem 1.2rem;
+      background-color: var(--cream);
+      border-radius: 50px;
+      text-decoration: none;
+      color: var(--dark);
+      font-weight: 600;
+      transition: all 0.3s ease;
+      border: 2px solid transparent;
+    }
+    
+    .category-link:hover, .category-link.active {
+      background-color: var(--primary-yellow);
+      color: var(--dark);
+      border-color: var(--primary-red);
+    }
+    
+    /* Menu Filter - More Compact */
+    .menu-filter {
+      padding: 1.5rem 1rem;
+      background-color: var(--light);
+      text-align: center;
+    }
+    
+    .filter-buttons {
+      display: flex;
+      justify-content: center;
+      flex-wrap: wrap;
+      gap: 0.8rem;
+      max-width: 1000px;
+      margin: 0 auto;
+    }
+    
+    .filter-button {
+      background-color: var(--cream);
+      border: 2px solid var(--primary-yellow);
+      padding: 0.6rem 1.2rem;
+      border-radius: 50px;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      font-size: 0.9rem;
+    }
+    
+    .filter-button:hover, .filter-button.active {
+      background-color: var(--primary-yellow);
+      color: var(--dark);
+    }
+    
+    /* Menu Sections - More Compact */
+    .menu-section {
+      padding: 2rem 1rem;
+      scroll-margin-top: 130px;
+    }
+    
+    .section-header {
+      text-align: center;
+      margin-bottom: 2rem;
+    }
+    
+    .section-title {
+      font-family: 'Fredoka One', cursive;
+      font-size: 2rem;
+      color: var(--primary-red);
+      margin-bottom: 0.8rem;
+      position: relative;
+      display: inline-block;
+    }
+    
+    .section-title::after {
+      content: '';
+      position: absolute;
+      width: 50%;
+      height: 4px;
+      background-color: var(--primary-yellow);
+      bottom: -8px;
+      left: 25%;
+    }
+    
+    /* More compact menu grid with more items visible */
+    .menu-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+      gap: 1.5rem;
+      max-width: 1400px;
+      margin: 0 auto;
+    }
+    
+    .menu-item {
+      background: var(--light);
+      border-radius: 12px;
+      overflow: hidden;
+      box-shadow: 0 8px 20px rgba(0, 0, 0, 0.06);
+      transition: all 0.3s ease;
+      display: flex;
+      flex-direction: column;
+      height: 100%;
+    }
+    
+    .menu-item:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 12px 25px rgba(0, 0, 0, 0.1);
+    }
+    
+    .menu-item-image {
+      width: 100%;
+      height: 180px;
+      object-fit: cover;
+    }
+    
+    .menu-item-content {
+      padding: 1.2rem;
+      display: flex;
+      flex-direction: column;
+      flex-grow: 1;
+    }
+    
+    .menu-item-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      margin-bottom: 0.5rem;
+      gap: 0.5rem;
+    }
+    
+    .menu-item-title {
+      font-family: 'Fredoka One', cursive;
+      font-size: 1.2rem;
+      color: var(--primary-red);
+      line-height: 1.3;
+    }
+    
+    .menu-item-price {
+      font-weight: 700;
+      color: var(--dark);
+      background-color: var(--light-yellow);
+      padding: 0.3rem 0.8rem;
+      border-radius: 20px;
+      white-space: nowrap;
+      flex-shrink: 0;
+    }
+    
+    .menu-item-description {
+      margin-bottom: 1rem;
+      color: var(--dark);
+      font-size: 0.9rem;
+      flex-grow: 1;
+    }
+    
+    .menu-item-footer {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    
+    .menu-item-tags {
+      display: flex;
+      gap: 0.5rem;
+    }
+    
+    .menu-tag {
+      font-size: 0.7rem;
+      padding: 0.3rem 0.6rem;
+      border-radius: 15px;
+      background-color: var(--cream);
+      color: var(--dark);
+    }
+    
+    .veg {
+      background-color: #4CAF50;
+      color: white;
+    }
+    
+    .spicy {
+      background-color: var(--primary-red);
+      color: white;
+    }
+    
+    .add-to-cart {
+      background-color: var(--primary-red);
+      color: white;
+      border: none;
+      width: 32px;
+      height: 32px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      flex-shrink: 0;
+    }
+    
+    .add-to-cart:hover {
+      background-color: var(--dark-red);
+      transform: scale(1.1);
+    }
+    
+    /* Cart notification */
+    .cart-notification {
+      position: fixed;
+      bottom: 20px;
+      right: 20px;
+      background-color: var(--primary-red);
+      color: white;
+      padding: 0.8rem 1.2rem;
+      border-radius: 50px;
+      box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      z-index: 1000;
+      opacity: 0;
+      transform: translateY(100px);
+      transition: all 0.5s ease;
+      font-size: 0.9rem;
+    }
+    
+    .cart-notification.show {
+      opacity: 1;
+      transform: translateY(0);
+    }
+    
+    /* Back to top button */
+    .back-to-top {
+      position: fixed;
+      bottom: 30px;
+      right: 30px;
+      width: 45px;
+      height: 45px;
+      border-radius: 50%;
+      background-color: var(--primary-red);
+      color: white;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      opacity: 0;
+      visibility: hidden;
+      transition: all 0.3s ease;
+      z-index: 999;
+      box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+    }
+    
+    .back-to-top.visible {
+      opacity: 1;
+      visibility: visible;
+    }
+    
+    .back-to-top:hover {
+      background-color: var(--dark-red);
+      transform: translateY(-5px);
+    }
+    
+    /* Footer */
+    footer {
+      background-color: var(--dark);
+      color: var(--light);
+      padding: 3rem 2rem;
+      text-align: center;
+      margin-top: 3rem;
+    }
+    
+    .footer-content {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 2rem;
+      max-width: 1200px;
+      margin: 0 auto;
+      text-align: left;
+    }
+    
+    .footer-column h3 {
+      font-family: 'Fredoka One', cursive;
+      font-size: 1.5rem;
+      color: var(--primary-yellow);
+      margin-bottom: 1.5rem;
+    }
+    
+    .footer-column p {
+      margin-bottom: 1rem;
+      font-size: 0.95rem;
+    }
+    
+    .footer-column a {
+      color: var(--light);
+      text-decoration: none;
+      display: block;
+      margin-bottom: 0.8rem;
+      transition: all 0.3s ease;
+      font-size: 0.95rem;
+    }
+    
+    .footer-column a:hover {
+      color: var(--primary-yellow);
+      transform: translateX(5px);
+    }
+    
+    .social-links {
+      display: flex;
+      gap: 1rem;
+      margin-top: 1.5rem;
+    }
+    
+    .social-links a {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 40px;
+      height: 40px;
+      background-color: rgba(255,255,255,0.1);
+      border-radius: 50%;
+      color: var(--light);
+      transition: all 0.3s ease;
+    }
+    
+    .social-links a:hover {
+      background-color: var(--primary-yellow);
+      color: var(--dark);
+      transform: translateY(-5px);
+    }
+    
+    .copyright {
+      margin-top: 3rem;
+      padding-top: 1.5rem;
+      border-top: 1px solid rgba(255,255,255,0.1);
+      font-size: 0.9rem;
+    }
+    
+    /* Responsive styles */
+    @media (max-width: 900px) {
+      .nav-items {
+        display: none;
+      }
+      
+      .hamburger {
+        display: flex;
+      }
+      
+      .menu-hero h1 {
+        font-size: 2.2rem;
+      }
+      
+      .category-nav {
+        top: 62px;
+      }
+      
+      .menu-section {
+        scroll-margin-top: 120px;
+      }
+    }
+    
+    @media (max-width: 768px) {
+      .navbar {
+        padding: 0.8rem 1rem;
+      }
+      
+      .logo-text {
+        font-size: 1.5rem;
+      }
+      
+      .logo-img {
+        height: 40px;
+        width: 40px;
+      }
+      
+      .menu-hero {
+        padding: 3rem 1rem 1.5rem;
+      }
+      
+      .menu-section {
+        padding: 1.5rem 1rem;
+      }
+      
+      .category-links {
+        justify-content: flex-start;
+      }
+      
+      .menu-grid {
+        grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+        gap: 1.2rem;
+      }
+    }
+    
+    @media (max-width: 480px) {
+      .menu-grid {
+        grid-template-columns: 1fr;
+      }
+      
+      .menu-hero h1 {
+        font-size: 1.8rem;
+      }
+      
+      .section-title {
+        font-size: 1.7rem;
+      }
+      
+      .category-links {
+        gap: 0.5rem;
+      }
+      
+      .category-link {
+        padding: 0.4rem 0.9rem;
+        font-size: 0.9rem;
+      }
+    }
+  </style>
+  
+ 
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        /* Base Styles */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background-color: #f9f9f9;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+        
+        h2 {
+            font-size: 2.5rem;
+            margin-bottom: 1.5rem;
+            color: #2c3e50;
+            position: relative;
+        }
+        
+        h2:after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 0;
+            width: 60px;
+            height: 4px;
+            background-color: #e67e22;
+            border-radius: 2px;
+        }
+        
+        p {
+            margin-bottom: 1.5rem;
+            font-size: 1.1rem;
+        }
+        
+        .highlight {
+            color: #e67e22;
+            font-weight: 600;
+        }
+        
+        /* Story Section */
+        .story-section {
+            padding: 80px 0;
+            background-color: #fff;
+        }
+        
+        .story-container {
+            display: flex;
+            flex-wrap: wrap;
+            align-items: center;
+            gap: 40px;
+        }
+        
+        .story-image {
+            flex: 1;
+            min-width: 300px;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s ease;
+        }
+        
+        .story-image:hover {
+            transform: translateY(-5px);
+        }
+        
+        .story-image img {
+            width: 100%;
+            height: auto;
+            display: block;
+            transition: transform 0.5s ease;
+        }
+        
+        .story-image:hover img {
+            transform: scale(1.05);
+        }
+        
+        .story-content {
+            flex: 1;
+            min-width: 300px;
+        }
+        
+        /* Values Section */
+        .values-section {
+            padding: 80px 0;
+            background-color: #f5f5f5;
+        }
+        
+        .section-title {
+            text-align: center;
+            margin-bottom: 60px;
+        }
+        
+        .section-title:after {
+            left: 50%;
+            transform: translateX(-50%);
+        }
+        
+        .values-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 30px;
+        }
+        
+        .value-card {
+            background: #fff;
+            border-radius: 10px;
+            padding: 30px;
+            text-align: center;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+            transition: all 0.3s ease;
+            opacity: 0;
+            transform: translateY(20px);
+        }
+        
+        .value-card.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        
+        .value-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.1);
+        }
+        
+        .value-icon {
+            width: 70px;
+            height: 70px;
+            background: rgba(230, 126, 34, 0.1);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 20px;
+            transition: all 0.3s ease;
+        }
+        
+        .value-card:hover .value-icon {
+            background: #e67e22;
+            transform: scale(1.1);
+        }
+        
+        .value-icon i {
+            font-size: 30px;
+            color: #e67e22;
+            transition: all 0.3s ease;
+        }
+        
+        .value-card:hover .value-icon i {
+            color: #fff;
+        }
+        
+        .value-card h3 {
+            margin-bottom: 15px;
+            color: #2c3e50;
+            font-size: 1.5rem;
+        }
+        
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .story-container {
+                flex-direction: column;
+            }
+            
+            .story-image, .story-content {
+                width: 100%;
+            }
+            
+            h2 {
+                font-size: 2rem;
+            }
+            
+            .values-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+        
+        /* Animation for section reveal */
+        .reveal {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all 0.8s ease;
+        }
+        
+        .reveal.active {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    </style>
+</head>
+
+
+
+
+
+  <footer>
+    <div class="footer-content">
+      <div class="footer-column">
+        <h3>Wonder Mouth</h3>
+        <p>Where every bite is a delightful surprise and every meal is served with speed and love.</p>
+        <div class="social-links">
+        
+          <a href="https://www.instagram.com/wondermouthcafe/"><i class="fab fa-instagram"></i></a>
+       
+        </div>
+      </div>
+      <div class="footer-column">
+        <h3>Quick Links</h3>
+        <a href="index.html">Home</a>
+        <a href="About.html">About Us</a>
+        <a href="Menu.html">Menu</a>
+        <a href="Contact.html">Contact</a>
+        <a href="Order.html">Order Online</a>
+      </div>
+      <div class="footer-column">
+        <h3>Contact Info</h3>
+        <p><i class="fas fa-map-marker-alt"></i> Ald Estate, 6th Avenue Gwarimpa , Abuja </p>
+        <p><i class="fas fa-phone"></i> +234 8160348696</p>
+        <p><i class="fas fa-envelope"></i> info@wondermouth.com</p>
+      </div>
+    </div>
+    <div class="copyright">
+      <p>&copy; 2023 Wonder Mouth Cafe. All rights reserved.</p>
+    </div>
+  </footer>
+
+ 
+
+  <script>
+    // Mobile menu functionality
+    const hamburger = document.getElementById('hamburger');
+    const mobileMenu = document.getElementById('mobileMenu');
+    
+    hamburger.addEventListener('click', () => {
+      mobileMenu.classList.toggle('active');
+      hamburger.classList.toggle('active');
+    });
+    
+    // Close mobile menu when clicking outside
+    document.addEventListener('click', (e) => {
+      if (!hamburger.contains(e.target) && !mobileMenu.contains(e.target)) {
+        mobileMenu.classList.remove('active');
+        hamburger.classList.remove('active');
+      }
+    });
+    
+    // Close mobile menu when clicking a link
+    const mobileLinks = document.querySelectorAll('.mobile-nav-link');
+    mobileLinks.forEach(link => {
+      link.addEventListener('click', () => {
+        mobileMenu.classList.remove('active');
+        hamburger.classList.remove('active');
+      });
+    });
+  </script>
+</body>
+</html>
