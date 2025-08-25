@@ -7,7 +7,6 @@
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&family=Fredoka+One&family=Caveat:wght@700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
   <style>
-    /* --- Simplified and essential styles only --- */
     :root {
       --primary-yellow: #FFD700;
       --primary-red: #FF4500;
@@ -15,43 +14,422 @@
       --cream: #FFF5E0;
       --dark: #333;
       --light: #fff;
+      --shadow: 0 4px 15px rgba(0,0,0,0.06);
     }
-    body { font-family: 'Poppins', sans-serif; background: var(--cream); color: var(--dark); margin: 0; }
-    .navbar { background: var(--light); display: flex; justify-content: space-between; align-items: center; padding: 0.8rem 2rem; border-bottom: 3px solid var(--primary-yellow); }
-    .logo-container { display: flex; align-items: center; gap: 0.8rem; }
-    .logo-img { height: 50px; width: 50px; border-radius: 50%; object-fit: cover; border: 2px solid var(--primary-red); }
-    .logo-text { font-family: 'Fredoka One', cursive; font-size: 1.8rem; color: var(--primary-red); }
-    .logo-text span { color: var(--primary-yellow); }
-    .nav-items { display: flex; gap: 1.5rem; align-items: center; }
-    .nav-link { color: var(--dark); text-decoration: none; font-weight: 600; font-size: 1rem; }
-    .cta-button { background: var(--primary-red); color: #fff; border: none; padding: 0.5rem 1.5rem; border-radius: 50px; font-weight: 600; cursor: pointer; }
-    .cta-button:hover { background: var(--dark-red); }
-    .menu-hero { padding: 3rem 1rem; text-align: center; background: var(--cream); }
-    .menu-hero h1 { font-family: 'Fredoka One', cursive; font-size: 2.2rem; color: var(--primary-red); }
+    html, body {
+      font-family: 'Poppins', sans-serif;
+      background: var(--cream);
+      color: var(--dark);
+      margin: 0;
+      padding: 0;
+      min-height: 100vh;
+    }
+    .navbar {
+      background: var(--light);
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      align-items: center;
+      padding: 0.8rem 2rem;
+      border-bottom: 3px solid var(--primary-yellow);
+      position: sticky;
+      top: 0;
+      z-index: 99;
+      box-shadow: var(--shadow);
+    }
+    .logo-container {
+      display: flex;
+      align-items: center;
+      gap: 0.8rem;
+    }
+    .logo-img {
+      height: 48px;
+      width: 48px;
+      border-radius: 50%;
+      object-fit: cover;
+      border: 2px solid var(--primary-red);
+      background: var(--cream);
+    }
+    .logo-text {
+      font-family: 'Fredoka One', cursive;
+      font-size: 1.8rem;
+      color: var(--primary-red);
+      letter-spacing: 1px;
+    }
+    .logo-text span {
+      color: var(--primary-yellow);
+    }
+    .nav-items {
+      display: flex;
+      gap: 1.2rem;
+      align-items: center;
+    }
+    .nav-link {
+      color: var(--dark);
+      text-decoration: none;
+      font-weight: 600;
+      font-size: 1rem;
+      padding: 0.3rem 0.8rem;
+      border-radius: 50px;
+      transition: background 0.2s;
+    }
+    .nav-link:hover, .nav-link.active {
+      background: var(--primary-yellow);
+      color: var(--primary-red);
+    }
+    .cta-button {
+      background: var(--primary-red);
+      color: #fff;
+      border: none;
+      padding: 0.5rem 1.3rem;
+      border-radius: 50px;
+      font-weight: 600;
+      cursor: pointer;
+      font-size: 1rem;
+      transition: background 0.3s, transform 0.15s;
+      box-shadow: var(--shadow);
+    }
+    .cta-button:hover {
+      background: var(--dark-red);
+      transform: translateY(-2px) scale(1.05);
+    }
+    .menu-hero {
+      padding: 2.5rem 1rem 1rem 1rem;
+      text-align: center;
+      background: var(--cream);
+    }
+    .menu-hero h1 {
+      font-family: 'Fredoka One', cursive;
+      font-size: 2.3rem;
+      color: var(--primary-red);
+      margin-bottom: 0.3rem;
+    }
     .menu-hero h1 span { color: var(--primary-yellow); }
-    .menu-section { padding: 2rem 1rem; }
-    .section-title { font-family: 'Fredoka One', cursive; font-size: 1.5rem; color: var(--primary-red); }
-    .menu-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(250px, 1fr)); gap: 1.2rem; }
-    .menu-item { background: var(--light); border-radius: 12px; box-shadow: 0 4px 15px rgba(0,0,0,0.06); display: flex; flex-direction: column; }
-    .menu-item-image { width: 100%; height: 150px; object-fit: cover; }
-    .menu-item-title { font-family: 'Fredoka One', cursive; font-size: 1rem; color: var(--primary-red); }
-    .menu-item-price { font-weight: 700; color: var(--dark); background: #FFF9C4; padding: 0.2rem 0.7rem; border-radius: 20px; }
-    .menu-item-description { font-size: 0.9rem; color: var(--dark); margin-bottom: 1rem; }
-    .add-to-cart { background: var(--primary-red); color: #fff; border: none; width: 32px; height: 32px; border-radius: 50%; cursor: pointer; }
-    .add-to-cart:hover { background: var(--dark-red); }
-    .cart-notification { position: fixed; bottom: 20px; right: 20px; background: var(--primary-red); color: #fff; padding: 0.8rem 1.2rem; border-radius: 50px; opacity: 0; transition: all 0.5s; font-size: 0.9rem; }
-    .cart-notification.show { opacity: 1; }
-    .cart-action-btn { position: fixed; bottom: 80px; right: 35px; background: var(--primary-yellow); color: var(--primary-red); border: none; border-radius: 50%; width: 60px; height: 60px; display: flex; align-items: center; justify-content: center; font-size: 2rem; cursor: pointer; z-index: 999; }
-    .cart-action-btn:hover { background: var(--primary-red); color: #fff; }
-    .cart-modal-bg { position: fixed; top: 0; left: 0; width: 100vw; height: 100vh; background: rgba(0,0,0,0.3); z-index: 2000; display: none; align-items: center; justify-content: center; }
+    .menu-hero p {
+      font-size: 1.15rem;
+      color: var(--dark);
+      margin-bottom: 0;
+      letter-spacing: 0.5px;
+    }
+    .menu-section {
+      padding: 2.2rem 1rem;
+      max-width: 1150px;
+      margin: auto;
+    }
+    .section-header {
+      margin-bottom: 0.6rem;
+    }
+    .section-title {
+      font-family: 'Fredoka One', cursive;
+      font-size: 1.55rem;
+      color: var(--primary-red);
+      margin-bottom: 0.2rem;
+      letter-spacing: 1px;
+    }
+    .menu-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 1.5rem;
+    }
+    .menu-item {
+      background: var(--light);
+      border-radius: 12px;
+      box-shadow: var(--shadow);
+      display: flex;
+      flex-direction: column;
+      transition: box-shadow 0.2s, transform 0.1s;
+      position: relative;
+      overflow: hidden;
+      min-width: 0;
+    }
+    .menu-item:hover {
+      box-shadow: 0 8px 32px rgba(0,0,0,0.18);
+      transform: translateY(-2px) scale(1.02);
+    }
+    .menu-item-image {
+      width: 100%;
+      height: 160px;
+      object-fit: cover;
+      border-radius: 12px 12px 0 0;
+      background: var(--cream);
+      border-bottom: 1px solid #ffe;
+      transition: filter 0.2s;
+    }
+    .menu-item-content {
+      padding: 1rem 1rem 0.6rem 1rem;
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+    }
+    .menu-item-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 0.3rem;
+    }
+    .menu-item-title {
+      font-family: 'Fredoka One', cursive;
+      font-size: 1.05rem;
+      color: var(--primary-red);
+      margin: 0;
+      flex: 1;
+      font-weight: 600;
+      letter-spacing: 0.5px;
+      line-height: 1.2;
+    }
+    .menu-item-price {
+      font-weight: 700;
+      color: var(--dark);
+      background: #FFF9C4;
+      padding: 0.2rem 0.7rem;
+      border-radius: 20px;
+      font-size: 0.99rem;
+      margin-left: 0.6rem;
+      box-shadow: 0 1px 4px rgba(255,215,0,0.08);
+    }
+    .menu-item-description {
+      font-size: 0.95rem;
+      color: var(--dark);
+      margin: 0.45rem 0 0.7rem 0;
+      flex: 1;
+      line-height: 1.5;
+    }
+    .menu-item-footer {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    .menu-item-tags {
+      display: flex;
+      gap: 0.4rem;
+    }
+    .menu-tag {
+      background: var(--primary-yellow);
+      color: var(--primary-red);
+      font-size: 0.80rem;
+      padding: 0.12rem 0.7rem;
+      border-radius: 17px;
+      font-weight: 600;
+      letter-spacing: 0.4px;
+      margin-right: 0.1rem;
+      box-shadow: 0 1px 3px rgba(255,215,0,0.06);
+    }
+    .add-to-cart {
+      background: var(--primary-red);
+      color: #fff;
+      border: none;
+      width: 34px;
+      height: 34px;
+      border-radius: 50%;
+      cursor: pointer;
+      font-size: 1.12rem;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: background 0.18s, transform 0.1s;
+      margin-left: auto;
+      box-shadow: 0 1px 6px rgba(255,69,0,0.09);
+    }
+    .add-to-cart:hover {
+      background: var(--dark-red);
+      transform: scale(1.08);
+    }
+    /* Cart Notification */
+    .cart-notification {
+      position: fixed;
+      bottom: 25px;
+      right: 25px;
+      background: var(--primary-red);
+      color: #fff;
+      padding: 0.9rem 1.25rem;
+      border-radius: 50px;
+      opacity: 0;
+      transition: all 0.5s;
+      font-size: 1rem;
+      z-index: 9999;
+      box-shadow: var(--shadow);
+      pointer-events: none;
+    }
+    .cart-notification.show { opacity: 1; pointer-events:auto;}
+    /* Floating Cart Button */
+    .cart-action-btn {
+      position: fixed;
+      bottom: 85px;
+      right: 40px;
+      background: var(--primary-yellow);
+      color: var(--primary-red);
+      border: none;
+      border-radius: 50%;
+      width: 62px;
+      height: 62px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 2.2rem;
+      cursor: pointer;
+      z-index: 999;
+      box-shadow: var(--shadow);
+      transition: background 0.2s, color 0.2s, box-shadow 0.18s;
+    }
+    .cart-action-btn:hover {
+      background: var(--primary-red);
+      color: #fff;
+      box-shadow: 0 6px 24px rgba(255,69,0,0.18);
+    }
+    #cartCountBadge {
+      position:absolute;
+      top:10px;right:15px;
+      background:var(--primary-red);
+      color:#fff;
+      border-radius:50%;
+      font-size:0.8rem;
+      width:20px;
+      height:20px;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      font-weight:700;
+      box-shadow: 0 1px 6px rgba(255,69,0,0.18);
+    }
+    /* Cart Modal */
+    .cart-modal-bg {
+      position: fixed;
+      top: 0; left: 0;
+      width: 100vw; height: 100vh;
+      background: rgba(0,0,0,0.25);
+      z-index: 2000;
+      display: none;
+      align-items: center;
+      justify-content: center;
+      transition: background 0.2s;
+    }
     .cart-modal-bg.active { display: flex; }
-    .cart-modal { background: #fff; border-radius: 12px; box-shadow: 0 8px 40px rgba(0,0,0,0.18); padding: 2rem 1.2rem; max-width: 95vw; width: 370px; max-height: 90vh; overflow-y: auto; position: relative; }
-    .cart-modal h2 { font-size: 1.3rem; color: var(--primary-red); text-align: center; margin-bottom: 1rem; }
-    .cart-item-row { display: flex; justify-content: space-between; align-items: center; margin-bottom: 0.7rem; font-size: 0.98rem; }
-    .cart-modal-close { position: absolute; right: 1.2rem; top: 1rem; font-size: 1.3rem; color: #888; background: none; border: none; cursor: pointer; }
-    .send-whatsapp-btn { background: var(--primary-red); color: #fff; border: none; border-radius: 6px; padding: 0.8rem; width: 100%; font-weight: bold; font-size: 1rem; cursor: pointer; margin-top: 0.3rem; }
-    .send-whatsapp-btn:hover { background: var(--dark-red); }
-    @media (max-width: 600px) { .cart-modal { width: 96vw; } .cart-action-btn { width: 52px; height: 52px; font-size: 1.6rem; } }
+    .cart-modal {
+      background: #fff;
+      border-radius: 16px;
+      box-shadow: 0 8px 48px rgba(0,0,0,0.15);
+      padding: 2rem 1.3rem;
+      max-width: 96vw;
+      width: 370px;
+      max-height: 92vh;
+      overflow-y: auto;
+      position: relative;
+      display: flex;
+      flex-direction: column;
+      animation: fadeInModal 0.22s;
+    }
+    @keyframes fadeInModal {
+      from {transform: scale(0.97); opacity:0;}
+      to {transform: scale(1); opacity:1;}
+    }
+    .cart-modal h2 {
+      font-size: 1.25rem;
+      color: var(--primary-red);
+      text-align: center;
+      margin-bottom: 1rem;
+      font-family:'Fredoka One',cursive;
+    }
+    .cart-item-row {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 0.7rem;
+      font-size: 1.01rem;
+      background: #FFFCE8;
+      padding: 0.25rem 0.5rem 0.25rem 0.5rem;
+      border-radius: 8px;
+    }
+    .cart-modal-close {
+      position: absolute;
+      right: 1.2rem;
+      top: 1rem;
+      font-size: 1.3rem;
+      color: #888;
+      background: none;
+      border: none;
+      cursor: pointer;
+      transition: color 0.2s;
+    }
+    .cart-modal-close:hover { color: var(--primary-red);}
+    .send-whatsapp-btn {
+      background: var(--primary-red);
+      color: #fff;
+      border: none;
+      border-radius: 8px;
+      padding: 0.8rem;
+      width: 100%;
+      font-weight: bold;
+      font-size: 1.08rem;
+      cursor: pointer;
+      margin-top: 0.4rem;
+      transition: background 0.18s, transform 0.14s;
+      box-shadow: var(--shadow);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.5rem;
+    }
+    .send-whatsapp-btn:hover {
+      background: var(--dark-red);
+      transform: scale(1.02);
+    }
+    #orderForm input, #orderForm textarea {
+      width: 100%;
+      margin: 0.35rem 0;
+      border: 1px solid #FFD700;
+      border-radius: 8px;
+      padding: 0.6rem;
+      font-size: 1rem;
+      font-family: 'Poppins',sans-serif;
+      background: #FFFDE4;
+      outline: none;
+      transition: border-color 0.17s;
+    }
+    #orderForm input:focus, #orderForm textarea:focus {
+      border-color: var(--primary-red);
+    }
+    #orderForm textarea {
+      resize: vertical;
+      min-height: 35px;
+      max-height: 80px;
+    }
+    #cartTotal {
+      font-weight: 700;
+      color: var(--primary-red);
+      font-size: 1.05rem;
+      text-align: right;
+      margin: 0.6rem 0 0.8rem 0;
+      letter-spacing: 0.5px;
+    }
+    /* Responsive Styles */
+    @media (max-width: 900px) {
+      .menu-section { padding: 1.5rem 0.5rem; }
+      .navbar { padding: 0.7rem 1rem;}
+      .menu-hero { padding: 1.5rem 0.5rem 0.8rem 0.5rem;}
+    }
+    @media (max-width: 600px) {
+      .navbar { flex-direction: column; align-items: stretch;}
+      .nav-items { flex-direction: column; gap: 0.8rem; padding-top: 0.2rem;}
+      .logo-img { height: 41px; width: 41px;}
+      .menu-hero h1 { font-size: 1.45rem;}
+      .menu-section { padding: 1rem 0.2rem;}
+      .cart-modal { width: 97vw; padding: 1.5rem 0.55rem;}
+      .cart-action-btn { width:52px; height:52px; font-size:1.5rem; right:18px;bottom:70px;}
+      #cartCountBadge {width:17px;height:17px;font-size:0.7rem;top:7px;right:11px;}
+      .menu-grid { grid-template-columns: repeat(auto-fit, minmax(190px, 1fr)); gap: 1rem;}
+      .menu-item-image { height: 110px;}
+    }
+    @media (max-width: 420px) {
+      .menu-hero h1 { font-size: 1.04rem;}
+      .menu-section { padding: 0.8rem 0.07rem;}
+      .cart-modal { width: 99vw; padding: 1.1rem 0.2rem;}
+    }
+    /* Smooth transitions for modal and notifications */
+    .cart-modal-bg,
+    .cart-notification,
+    .cart-action-btn {
+      transition: all 0.2s cubic-bezier(.45,.05,.55,.95);
+    }
   </style>
 </head>
 <body>
@@ -63,7 +441,7 @@
     <div class="nav-items">
       <a href="index.html" class="nav-link">Home</a>
       <a href="About.html" class="nav-link">About</a>
-      <a href="Menu.html" class="nav-link">Menu</a>
+      <a href="Menu.html" class="nav-link active">Menu</a>
       <a href="Contact.html" class="nav-link">Contact</a>
       <button class="cta-button" onclick="location.href='Order.html'">Place Order</button>
     </div>
@@ -72,27 +450,72 @@
     <h1>Our <span>Menu</span></h1>
     <p>Discover our delicious selection of meals crafted with passion and served with speed</p>
   </section>
-  <!-- Example Menu Section -->
-  <section class="menu-section">
+   <section class="menu-section">
+  <div class="section-header">
     <h2 class="section-title">Shawarma</h2>
-    <div class="menu-grid">
-      <div class="menu-item">
-        <img src="https://plus.unsplash.com/premium_photo-1664478294917-c11274b9ce79?w=600&auto=format&fit=crop&q=60" class="menu-item-image" alt="Chicken Shawarma">
-        <div class="menu-item-title">Chicken Shawarma (No Sausage)</div>
-        <div class="menu-item-price">₦3,000</div>
-        <div class="menu-item-description">Classic chicken shawarma with juicy chicken, fresh veggies, and creamy sauce.</div>
-        <button class="add-to-cart"><i class="fas fa-plus"></i></button>
-      </div>
-      <!-- More menu items ... -->
-      <div class="menu-item">
-        <img src="https://plus.unsplash.com/premium_photo-1664478294917-c11274b9ce79?w=600&auto=format&fit=crop&q=60" class="menu-item-image" alt="Chicken Shawarma with Two Sausages">
-        <div class="menu-item-title">Chicken Shawarma with Two Sausages</div>
-        <div class="menu-item-price">₦3,500</div>
-        <div class="menu-item-description">Our popular chicken shawarma with the addition of two savory sausages.</div>
-        <button class="add-to-cart"><i class="fas fa-plus"></i></button>
+    <p>Savory wraps filled with your choice of meat and fresh vegetables.</p>
+  </div>
+  
+  <div class="menu-grid">
+    <div class="menu-item" data-category="mains">
+      <img src="https://plus.unsplash.com/premium_photo-1664478294917-c11274b9ce79?w=600&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MXx8c2hhd2FybWElMjByb2xsfGVufDB8fDB8fHww" alt="Chicken Shawarma" class="menu-item-image">
+      <div class="menu-item-content">
+        <div class="menu-item-header">
+          <h3 class="menu-item-title">Chicken Shawarma (No Sausage)</h3>
+          <div class="menu-item-price">₦3,000</div>
+        </div>
+        <p class="menu-item-description">Classic chicken shawarma with juicy chicken, fresh veggies, and creamy sauce.</p>
+        <div class="menu-item-footer">
+          <div class="menu-item-tags">
+            <span class="menu-tag">New</span>
+          </div>
+          <button class="add-to-cart">
+            <i class="fas fa-plus"></i>
+          </button>
+        </div>
       </div>
     </div>
-  </section>
+    
+    <div class="menu-item" data-category="mains">
+      <img src="https://plus.unsplash.com/premium_photo-1664478294917-c11274b9ce79?w=600&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MXx8c2hhd2FybWElMjByb2xsfGVufDB8fDB8fHww" alt="Chicken Shawarma with Two Sausages" class="menu-item-image">
+      <div class="menu-item-content">
+        <div class="menu-item-header">
+          <h3 class="menu-item-title">Chicken Shawarma with Two Sausages</h3>
+          <div class="menu-item-price">₦3,500</div>
+        </div>
+        <p class="menu-item-description">Our popular chicken shawarma with the addition of two savory sausages.</p>
+        <div class="menu-item-footer">
+          <div class="menu-item-tags">
+            <span class="menu-tag">Popular</span>
+          </div>
+          <button class="add-to-cart">
+            <i class="fas fa-plus"></i>
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <div class="menu-item" data-category="mains">
+      <img src="https://plus.unsplash.com/premium_photo-1664478294917-c11274b9ce79?w=600&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MXx8c2hhd2FybWElMjByb2xsfGVufDB8fDB8fHww" alt="Chicken Shawarma with Double Sausage" class="menu-item-image">
+      <div class="menu-item-content">
+        <div class="menu-item-header">
+          <h3 class="menu-item-title">Chicken Shawarma with 2 Sausages</h3>
+          <div class="menu-item-price">₦4,000</div>
+        </div>
+        <p class="menu-item-description">For the sausage lovers! Our classic shawarma with an extra two sausages.</p>
+        <div class="menu-item-footer">
+          <div class="menu-item-tags">
+      
+          </div>
+          <button class="add-to-cart">
+            <i class="fas fa-plus"></i>
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
 
   <section class="menu-section">
   <div class="section-header">
@@ -498,8 +921,7 @@
       </div>
     </div>
   </div>
-</section>
-   
+</section> 
 
   <!-- Cart Notification -->
   <div class="cart-notification" id="cartNotification"><span></span></div>
@@ -521,11 +943,12 @@
   <!-- Floating Cart Button -->
   <button class="cart-action-btn" id="cartActionBtn" title="View Cart" style="display:none;">
     <i class="fas fa-shopping-cart"></i>
-    <span id="cartCountBadge" style="position:absolute;top:10px;right:15px;background:var(--primary-red);color:#fff;border-radius:50%;font-size:0.8rem;width:20px;height:20px;display:flex;align-items:center;justify-content:center;">0</span>
+    <span id="cartCountBadge">0</span>
   </button>
   <script>
-    // --- Simplified Whatsapp Ordering Cart ---
+    // --- User-centric, smooth cart logic ---
     const cart = [];
+    const cartActionBtn = document.getElementById('cartActionBtn');
     function updateCartBadge() {
       document.getElementById('cartCountBadge').textContent = cart.length;
     }
@@ -543,7 +966,7 @@
         cart.push({ title, price: Number(price) });
         updateCartBadge();
         showCartNotification(`${title} added to cart!`);
-        document.getElementById('cartActionBtn').style.display = "flex";
+        cartActionBtn.style.display = "flex";
       };
     });
     function renderCartModal() {
@@ -565,10 +988,9 @@
       cart.splice(idx, 1);
       updateCartBadge();
       renderCartModal();
-      document.getElementById('cartActionBtn').style.display = cart.length ? "flex" : "none";
+      cartActionBtn.style.display = cart.length ? "flex" : "none";
     };
-    // Cart Modal controls
-    document.getElementById('cartActionBtn').onclick = () => {
+    cartActionBtn.onclick = () => {
       renderCartModal();
       document.getElementById('cartModalBg').classList.add('active');
     };
@@ -578,7 +1000,6 @@
       if (e.target === document.getElementById('cartModalBg'))
         document.getElementById('cartModalBg').classList.remove('active');
     };
-    // WhatsApp order form
     document.getElementById('orderForm').onsubmit = function(e) {
       e.preventDefault();
       if (!cart.length) return alert("Your cart is empty! Please add items.");
@@ -598,8 +1019,18 @@
       document.getElementById('cartModalBg').classList.remove('active');
       cart.length = 0; // clear cart
       updateCartBadge();
-      document.getElementById('cartActionBtn').style.display = "none";
+      cartActionBtn.style.display = "none";
     };
+    // Keyboard shortcut for cart (Accessibility)
+    document.addEventListener('keydown', function(e) {
+      // Alt+C to open cart modal
+      if ((e.altKey || e.ctrlKey) && e.key.toLowerCase() === 'c') {
+        if (cart.length) {
+          renderCartModal();
+          document.getElementById('cartModalBg').classList.add('active');
+        }
+      }
+    });
   </script>
 </body>
 </html>
