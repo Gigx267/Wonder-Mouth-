@@ -4,665 +4,54 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Menu - Wonder Mouth Cafe</title>
-  
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&family=Fredoka+One&family=Caveat:wght@700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-  
   <style>
+    /* --- Simplified and essential styles only --- */
     :root {
       --primary-yellow: #FFD700;
       --primary-red: #FF4500;
       --dark-red: #E03C31;
-      --light-yellow: #FFF9C4;
       --cream: #FFF5E0;
-      --dark: #333333;
-      --light: #ffffff;
-    }
-    
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-    }
-    
-    body {
-      font-family: 'Poppins', sans-serif;
-      background-color: var(--cream);
-      color: var(--dark);
-      line-height: 1.6;
-      padding: 0;
-      margin: 0;
-    }
-    
-    /* Redesigned Navbar */
-    .navbar {
-      background-color: var(--light);
-      padding: 0.8rem 2rem;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      position: sticky;
-      top: 0;
-      z-index: 1000;
-      box-shadow: 0 2px 15px rgba(0, 0, 0, 0.1);
-      border-bottom: 3px solid var(--primary-yellow);
-    }
-    
-    .logo-container {
-      display: flex;
-      align-items: center;
-      gap: 0.8rem;
-    }
-    
-    .logo-img {
-      height: 50px;
-      width: 50px;
-      border-radius: 50%;
-      object-fit: cover;
-      border: 2px solid var(--primary-red);
-    }
-    
-    .logo-text {
-      font-family: 'Fredoka One', cursive;
-      font-size: 1.8rem;
-      color: var(--primary-red);
-      letter-spacing: 0.5px;
-    }
-    
-    .logo-text span {
-      color: var(--primary-yellow);
-    }
-    
-    .nav-items {
-      display: flex;
-      align-items: center;
-      gap: 1.5rem;
-    }
-    
-    .nav-link {
-      color: var(--dark);
-      text-decoration: none;
-      font-weight: 600;
-      font-size: 1rem;
-      padding: 0.5rem 0.8rem;
-      transition: all 0.3s ease;
-      position: relative;
-    }
-    
-    .nav-link:hover {
-      color: var(--primary-red);
-    }
-    
-    .nav-link::after {
-      content: '';
-      position: absolute;
-      width: 0;
-      height: 2px;
-      background-color: var(--primary-yellow);
-      bottom: 0;
-      left: 0;
-      transition: width 0.3s ease;
-    }
-    
-    .nav-link:hover::after {
-      width: 100%;
-    }
-    
-    .cta-button {
-      background-color: var(--primary-red);
-      color: white;
-      border: none;
-      padding: 0.6rem 1.5rem;
-      border-radius: 50px;
-      font-weight: 600;
-      cursor: pointer;
-      transition: all 0.3s ease;
-      box-shadow: 0 4px 10px rgba(255, 69, 0, 0.3);
-      text-transform: uppercase;
-      font-size: 0.9rem;
-      letter-spacing: 0.5px;
-    }
-    
-    .cta-button:hover {
-      background-color: var(--dark-red);
-      transform: translateY(-2px);
-      box-shadow: 0 6px 15px rgba(255, 69, 0, 0.4);
-    }
-    
-    .hamburger {
-      display: none;
-      flex-direction: column;
-      justify-content: space-around;
-      width: 30px;
-      height: 25px;
-      background: transparent;
-      border: none;
-      cursor: pointer;
-      padding: 0;
-    }
-    
-    .hamburger span {
-      width: 100%;
-      height: 3px;
-      background-color: var(--primary-red);
-      border-radius: 5px;
-      transition: all 0.3s ease;
-    }
-    
-    /* Mobile menu */
-    .mobile-menu {
-      display: none;
-      position: fixed;
-      top: 70px;
-      left: 0;
-      width: 100%;
-      background-color: var(--light);
-      box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
-      padding: 1rem 0;
-      z-index: 999;
-    }
-    
-    .mobile-menu.active {
-      display: block;
-    }
-    
-    .mobile-nav-link {
-      display: block;
-      padding: 1rem 2rem;
-      color: var(--dark);
-      text-decoration: none;
-      font-weight: 600;
-      border-bottom: 1px solid rgba(0, 0, 0, 0.05);
-      transition: all 0.3s ease;
-    }
-    
-    .mobile-nav-link:hover {
-      background-color: var(--light-yellow);
-      color: var(--primary-red);
-      padding-left: 2.5rem;
-    }
-    
-    .mobile-cta {
-      display: block;
-      margin: 1rem 2rem;
-      text-align: center;
-    }
-    
-    /* Menu Hero Section - More Compact */
-    .menu-hero {
-      padding: 4rem 2rem 2rem;
-      text-align: center;
-      background: linear-gradient(135deg, rgba(255,215,0,0.15), rgba(255,165,0,0.15)), url('./logo.jpg');
-      background-size: cover;
-      background-position: center;
-      position: relative;
-      color: var(--dark);
-    }
-    
-    .menu-hero::before {
-      content: '';
-      position: absolute;
-      top: 0;
-      left: 0;
-      right: 0;
-      bottom: 0;
-      background: rgba(255, 255, 255, 0.85);
-    }
-    
-    .menu-hero-content {
-      position: relative;
-      z-index: 2;
-      max-width: 800px;
-      margin: 0 auto;
-    }
-    
-    .menu-hero h1 {
-      font-family: 'Fredoka One', cursive;
-      font-size: 2.8rem;
-      color: var(--primary-red);
-      margin-bottom: 1rem;
-    }
-    
-    .menu-hero h1 span {
-      color: var(--primary-yellow);
-    }
-    
-    .menu-hero p {
-      font-size: 1.1rem;
-      margin-bottom: 1.5rem;
-    }
-    
-    /* Category Navigation */
-    .category-nav {
-      background-color: var(--light);
-      padding: 1rem;
-      position: sticky;
-      top: 70px;
-      z-index: 900;
-      box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
-      overflow-x: auto;
-      white-space: nowrap;
-      scrollbar-width: none;
-    }
-    
-    .category-nav::-webkit-scrollbar {
-      display: none;
-    }
-    
-    .category-links {
-      display: flex;
-      justify-content: center;
-      gap: 0.8rem;
-      max-width: 1000px;
-      margin: 0 auto;
-    }
-    
-    .category-link {
-      padding: 0.5rem 1.2rem;
-      background-color: var(--cream);
-      border-radius: 50px;
-      text-decoration: none;
-      color: var(--dark);
-      font-weight: 600;
-      transition: all 0.3s ease;
-      border: 2px solid transparent;
-    }
-    
-    .category-link:hover, .category-link.active {
-      background-color: var(--primary-yellow);
-      color: var(--dark);
-      border-color: var(--primary-red);
-    }
-    
-    /* Menu Filter - More Compact */
-    .menu-filter {
-      padding: 1.5rem 1rem;
-      background-color: var(--light);
-      text-align: center;
-    }
-    
-    .filter-buttons {
-      display: flex;
-      justify-content: center;
-      flex-wrap: wrap;
-      gap: 0.8rem;
-      max-width: 1000px;
-      margin: 0 auto;
-    }
-    
-    .filter-button {
-      background-color: var(--cream);
-      border: 2px solid var(--primary-yellow);
-      padding: 0.6rem 1.2rem;
-      border-radius: 50px;
-      font-weight: 600;
-      cursor: pointer;
-      transition: all 0.3s ease;
-      font-size: 0.9rem;
-    }
-    
-    .filter-button:hover, .filter-button.active {
-      background-color: var(--primary-yellow);
-      color: var(--dark);
-    }
-    
-    /* Menu Sections - More Compact */
-    .menu-section {
-      padding: 2rem 1rem;
-      scroll-margin-top: 130px;
-    }
-    
-    .section-header {
-      text-align: center;
-      margin-bottom: 2rem;
-    }
-    
-    .section-title {
-      font-family: 'Fredoka One', cursive;
-      font-size: 2rem;
-      color: var(--primary-red);
-      margin-bottom: 0.8rem;
-      position: relative;
-      display: inline-block;
-    }
-    
-    .section-title::after {
-      content: '';
-      position: absolute;
-      width: 50%;
-      height: 4px;
-      background-color: var(--primary-yellow);
-      bottom: -8px;
-      left: 25%;
-    }
-    
-    /* More compact menu grid with more items visible */
-    .menu-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
-      gap: 1.5rem;
-      max-width: 1400px;
-      margin: 0 auto;
-    }
-    
-    .menu-item {
-      background: var(--light);
-      border-radius: 12px;
-      overflow: hidden;
-      box-shadow: 0 8px 20px rgba(0, 0, 0, 0.06);
-      transition: all 0.3s ease;
-      display: flex;
-      flex-direction: column;
-      height: 100%;
-    }
-    
-    .menu-item:hover {
-      transform: translateY(-5px);
-      box-shadow: 0 12px 25px rgba(0, 0, 0, 0.1);
-    }
-    
-    .menu-item-image {
-      width: 100%;
-      height: 180px;
-      object-fit: cover;
-    }
-    
-    .menu-item-content {
-      padding: 1.2rem;
-      display: flex;
-      flex-direction: column;
-      flex-grow: 1;
-    }
-    
-    .menu-item-header {
-      display: flex;
-      justify-content: space-between;
-      align-items: flex-start;
-      margin-bottom: 0.5rem;
-      gap: 0.5rem;
-    }
-    
-    .menu-item-title {
-      font-family: 'Fredoka One', cursive;
-      font-size: 1.2rem;
-      color: var(--primary-red);
-      line-height: 1.3;
-    }
-    
-    .menu-item-price {
-      font-weight: 700;
-      color: var(--dark);
-      background-color: var(--light-yellow);
-      padding: 0.3rem 0.8rem;
-      border-radius: 20px;
-      white-space: nowrap;
-      flex-shrink: 0;
-    }
-    
-    .menu-item-description {
-      margin-bottom: 1rem;
-      color: var(--dark);
-      font-size: 0.9rem;
-      flex-grow: 1;
-    }
-    
-    .menu-item-footer {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-    }
-    
-    .menu-item-tags {
-      display: flex;
-      gap: 0.5rem;
-    }
-    
-    .menu-tag {
-      font-size: 0.7rem;
-      padding: 0.3rem 0.6rem;
-      border-radius: 15px;
-      background-color: var(--cream);
-      color: var(--dark);
-    }
-    
-    .veg {
-      background-color: #4CAF50;
-      color: white;
-    }
-    
-    .spicy {
-      background-color: var(--primary-red);
-      color: white;
-    }
-    
-    .add-to-cart {
-      background-color: var(--primary-red);
-      color: white;
-      border: none;
-      width: 32px;
-      height: 32px;
-      border-radius: 50%;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      cursor: pointer;
-      transition: all 0.3s ease;
-      flex-shrink: 0;
-    }
-    
-    .add-to-cart:hover {
-      background-color: var(--dark-red);
-      transform: scale(1.1);
-    }
-    
-    /* Cart notification */
-    .cart-notification {
-      position: fixed;
-      bottom: 20px;
-      right: 20px;
-      background-color: var(--primary-red);
-      color: white;
-      padding: 0.8rem 1.2rem;
-      border-radius: 50px;
-      box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
-      display: flex;
-      align-items: center;
-      gap: 0.5rem;
-      z-index: 1000;
-      opacity: 0;
-      transform: translateY(100px);
-      transition: all 0.5s ease;
-      font-size: 0.9rem;
-    }
-    
-    .cart-notification.show {
-      opacity: 1;
-      transform: translateY(0);
-    }
-    
-    /* Back to top button */
-    .back-to-top {
-      position: fixed;
-      bottom: 30px;
-      right: 30px;
-      width: 45px;
-      height: 45px;
-      border-radius: 50%;
-      background-color: var(--primary-red);
-      color: white;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      cursor: pointer;
-      opacity: 0;
-      visibility: hidden;
-      transition: all 0.3s ease;
-      z-index: 999;
-      box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
-    }
-    
-    .back-to-top.visible {
-      opacity: 1;
-      visibility: visible;
-    }
-    
-    .back-to-top:hover {
-      background-color: var(--dark-red);
-      transform: translateY(-5px);
-    }
-    
-    /* Footer */
-    footer {
-      background-color: var(--dark);
-      color: var(--light);
-      padding: 3rem 2rem;
-      text-align: center;
-      margin-top: 3rem;
-    }
-    
-    .footer-content {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-      gap: 2rem;
-      max-width: 1200px;
-      margin: 0 auto;
-      text-align: left;
-    }
-    
-    .footer-column h3 {
-      font-family: 'Fredoka One', cursive;
-      font-size: 1.5rem;
-      color: var(--primary-yellow);
-      margin-bottom: 1.5rem;
-    }
-    
-    .footer-column p {
-      margin-bottom: 1rem;
-      font-size: 0.95rem;
-    }
-    
-    .footer-column a {
-      color: var(--light);
-      text-decoration: none;
-      display: block;
-      margin-bottom: 0.8rem;
-      transition: all 0.3s ease;
-      font-size: 0.95rem;
-    }
-    
-    .footer-column a:hover {
-      color: var(--primary-yellow);
-      transform: translateX(5px);
-    }
-    
-    .social-links {
-      display: flex;
-      gap: 1rem;
-      margin-top: 1.5rem;
-    }
-    
-    .social-links a {
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      width: 40px;
-      height: 40px;
-      background-color: rgba(255,255,255,0.1);
-      border-radius: 50%;
-      color: var(--light);
-      transition: all 0.3s ease;
-    }
-    
-    .social-links a:hover {
-      background-color: var(--primary-yellow);
-      color: var(--dark);
-      transform: translateY(-5px);
-    }
-    
-    .copyright {
-      margin-top: 3rem;
-      padding-top: 1.5rem;
-      border-top: 1px solid rgba(255,255,255,0.1);
-      font-size: 0.9rem;
-    }
-    
-    /* Responsive styles */
-    @media (max-width: 900px) {
-      .nav-items {
-        display: none;
-      }
-      
-      .hamburger {
-        display: flex;
-      }
-      
-      .menu-hero h1 {
-        font-size: 2.2rem;
-      }
-      
-      .category-nav {
-        top: 62px;
-      }
-      
-      .menu-section {
-        scroll-margin-top: 120px;
-      }
-    }
-    
-    @media (max-width: 768px) {
-      .navbar {
-        padding: 0.8rem 1rem;
-      }
-      
-      .logo-text {
-        font-size: 1.5rem;
-      }
-      
-      .logo-img {
-        height: 40px;
-        width: 40px;
-      }
-      
-      .menu-hero {
-        padding: 3rem 1rem 1.5rem;
-      }
-      
-      .menu-section {
-        padding: 1.5rem 1rem;
-      }
-      
-      .category-links {
-        justify-content: flex-start;
-      }
-      
-      .menu-grid {
-        grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
-        gap: 1.2rem;
-      }
-    }
-    
-    @media (max-width: 480px) {
-      .menu-grid {
-        grid-template-columns: 1fr;
-      }
-      
-      .menu-hero h1 {
-        font-size: 1.8rem;
-      }
-      
-      .section-title {
-        font-size: 1.7rem;
-      }
-      
-      .category-links {
-        gap: 0.5rem;
-      }
-      
-      .category-link {
-        padding: 0.4rem 0.9rem;
-        font-size: 0.9rem;
-      }
-    }
+      --dark: #333;
+      --light: #fff;
+    }
+    body { font-family: 'Poppins', sans-serif; background: var(--cream); color: var(--dark); margin: 0; }
+    .navbar { background: var(--light); display: flex; justify-content: space-between; align-items: center; padding: 0.8rem 2rem; border-bottom: 3px solid var(--primary-yellow); }
+    .logo-container { display: flex; align-items: center; gap: 0.8rem; }
+    .logo-img { height: 50px; width: 50px; border-radius: 50%; object-fit: cover; border: 2px solid var(--primary-red); }
+    .logo-text { font-family: 'Fredoka One', cursive; font-size: 1.8rem; color: var(--primary-red); }
+    .logo-text span { color: var(--primary-yellow); }
+    .nav-items { display: flex; gap: 1.5rem; align-items: center; }
+    .nav-link { color: var(--dark); text-decoration: none; font-weight: 600; font-size: 1rem; }
+    .cta-button { background: var(--primary-red); color: #fff; border: none; padding: 0.5rem 1.5rem; border-radius: 50px; font-weight: 600; cursor: pointer; }
+    .cta-button:hover { background: var(--dark-red); }
+    .menu-hero { padding: 3rem 1rem; text-align: center; background: var(--cream); }
+    .menu-hero h1 { font-family: 'Fredoka One', cursive; font-size: 2.2rem; color: var(--primary-red); }
+    .menu-hero h1 span { color: var(--primary-yellow); }
+    .menu-section { padding: 2rem 1rem; }
+    .section-title { font-family: 'Fredoka One', cursive; font-size: 1.5rem; color: var(--primary-red); }
+    .menu-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(250px, 1fr)); gap: 1.2rem; }
+    .menu-item { background: var(--light); border-radius: 12px; box-shadow: 0 4px 15px rgba(0,0,0,0.06); display: flex; flex-direction: column; }
+    .menu-item-image { width: 100%; height: 150px; object-fit: cover; }
+    .menu-item-title { font-family: 'Fredoka One', cursive; font-size: 1rem; color: var(--primary-red); }
+    .menu-item-price { font-weight: 700; color: var(--dark); background: #FFF9C4; padding: 0.2rem 0.7rem; border-radius: 20px; }
+    .menu-item-description { font-size: 0.9rem; color: var(--dark); margin-bottom: 1rem; }
+    .add-to-cart { background: var(--primary-red); color: #fff; border: none; width: 32px; height: 32px; border-radius: 50%; cursor: pointer; }
+    .add-to-cart:hover { background: var(--dark-red); }
+    .cart-notification { position: fixed; bottom: 20px; right: 20px; background: var(--primary-red); color: #fff; padding: 0.8rem 1.2rem; border-radius: 50px; opacity: 0; transition: all 0.5s; font-size: 0.9rem; }
+    .cart-notification.show { opacity: 1; }
+    .cart-action-btn { position: fixed; bottom: 80px; right: 35px; background: var(--primary-yellow); color: var(--primary-red); border: none; border-radius: 50%; width: 60px; height: 60px; display: flex; align-items: center; justify-content: center; font-size: 2rem; cursor: pointer; z-index: 999; }
+    .cart-action-btn:hover { background: var(--primary-red); color: #fff; }
+    .cart-modal-bg { position: fixed; top: 0; left: 0; width: 100vw; height: 100vh; background: rgba(0,0,0,0.3); z-index: 2000; display: none; align-items: center; justify-content: center; }
+    .cart-modal-bg.active { display: flex; }
+    .cart-modal { background: #fff; border-radius: 12px; box-shadow: 0 8px 40px rgba(0,0,0,0.18); padding: 2rem 1.2rem; max-width: 95vw; width: 370px; max-height: 90vh; overflow-y: auto; position: relative; }
+    .cart-modal h2 { font-size: 1.3rem; color: var(--primary-red); text-align: center; margin-bottom: 1rem; }
+    .cart-item-row { display: flex; justify-content: space-between; align-items: center; margin-bottom: 0.7rem; font-size: 0.98rem; }
+    .cart-modal-close { position: absolute; right: 1.2rem; top: 1rem; font-size: 1.3rem; color: #888; background: none; border: none; cursor: pointer; }
+    .send-whatsapp-btn { background: var(--primary-red); color: #fff; border: none; border-radius: 6px; padding: 0.8rem; width: 100%; font-weight: bold; font-size: 1rem; cursor: pointer; margin-top: 0.3rem; }
+    .send-whatsapp-btn:hover { background: var(--dark-red); }
+    @media (max-width: 600px) { .cart-modal { width: 96vw; } .cart-action-btn { width: 52px; height: 52px; font-size: 1.6rem; } }
   </style>
 </head>
 <body>
@@ -671,7 +60,6 @@
       <img src="logo.jpg" alt="Wonder Mouth Logo" class="logo-img">
       <div class="logo-text">Wonder <span>Mouth</span></div>
     </div>
-    
     <div class="nav-items">
       <a href="index.html" class="nav-link">Home</a>
       <a href="About.html" class="nav-link">About</a>
@@ -679,108 +67,32 @@
       <a href="Contact.html" class="nav-link">Contact</a>
       <button class="cta-button" onclick="location.href='Order.html'">Place Order</button>
     </div>
-    
-    <button class="hamburger" id="hamburger" aria-label="Toggle menu">
-      <span></span>
-      <span></span>
-      <span></span>
-    </button>
   </nav>
-  
-  <div class="mobile-menu" id="mobileMenu">
-    <a href="index.html" class="mobile-nav-link">Home</a>
-    <a href="About.html" class="mobile-nav-link">About</a>
-    <a href="Menu.html" class="mobile-nav-link">Menu</a>
-    <a href="Contact.html" class="mobile-nav-link">Contact</a>
-    <button class="cta-button mobile-cta" onclick="location.href='Order.html'">Place Order</button>
-  </div>
-  
   <section class="menu-hero">
-    <div class="menu-hero-content">
-      <h1>Our <span>Menu</span></h1>
-      <p>Discover our delicious selection of meals crafted with passion and served with speed</p>
+    <h1>Our <span>Menu</span></h1>
+    <p>Discover our delicious selection of meals crafted with passion and served with speed</p>
+  </section>
+  <!-- Example Menu Section -->
+  <section class="menu-section">
+    <h2 class="section-title">Shawarma</h2>
+    <div class="menu-grid">
+      <div class="menu-item">
+        <img src="https://plus.unsplash.com/premium_photo-1664478294917-c11274b9ce79?w=600&auto=format&fit=crop&q=60" class="menu-item-image" alt="Chicken Shawarma">
+        <div class="menu-item-title">Chicken Shawarma (No Sausage)</div>
+        <div class="menu-item-price">₦3,000</div>
+        <div class="menu-item-description">Classic chicken shawarma with juicy chicken, fresh veggies, and creamy sauce.</div>
+        <button class="add-to-cart"><i class="fas fa-plus"></i></button>
+      </div>
+      <!-- More menu items ... -->
+      <div class="menu-item">
+        <img src="https://plus.unsplash.com/premium_photo-1664478294917-c11274b9ce79?w=600&auto=format&fit=crop&q=60" class="menu-item-image" alt="Chicken Shawarma with Two Sausages">
+        <div class="menu-item-title">Chicken Shawarma with Two Sausages</div>
+        <div class="menu-item-price">₦3,500</div>
+        <div class="menu-item-description">Our popular chicken shawarma with the addition of two savory sausages.</div>
+        <button class="add-to-cart"><i class="fas fa-plus"></i></button>
+      </div>
     </div>
   </section>
-  
-  <!-- Category Navigation -->
-  <div class="category-nav">
-    <div class="category-links">
-      <a href="#shawarma" class="category-link">Shawarma</a>
-      <a href="#wonder-cow" class="category-link">Wonder Cow</a>
-      <a href="#chips" class="category-link">Chips</a>
-      <a href="#tea-coffee" class="category-link">Tea & Coffee</a>
-      <a href="#coconut" class="category-link">Coconut Way</a>
-      <a href="#zobo" class="category-link">Zobo Fruta</a>
-    </div>
-  </div>
-  <!-- Menu Filter -->
- 
-  <section class="menu-section">
-  <div class="section-header">
-    <h2 class="section-title">Shawarma</h2>
-    <p>Savory wraps filled with your choice of meat and fresh vegetables.</p>
-  </div>
-  
-  <div class="menu-grid">
-    <div class="menu-item" data-category="mains">
-      <img src="https://plus.unsplash.com/premium_photo-1664478294917-c11274b9ce79?w=600&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MXx8c2hhd2FybWElMjByb2xsfGVufDB8fDB8fHww" alt="Chicken Shawarma" class="menu-item-image">
-      <div class="menu-item-content">
-        <div class="menu-item-header">
-          <h3 class="menu-item-title">Chicken Shawarma (No Sausage)</h3>
-          <div class="menu-item-price">₦3,000</div>
-        </div>
-        <p class="menu-item-description">Classic chicken shawarma with juicy chicken, fresh veggies, and creamy sauce.</p>
-        <div class="menu-item-footer">
-          <div class="menu-item-tags">
-            <span class="menu-tag">New</span>
-          </div>
-          <button class="add-to-cart">
-            <i class="fas fa-plus"></i>
-          </button>
-        </div>
-      </div>
-    </div>
-    
-    <div class="menu-item" data-category="mains">
-      <img src="https://plus.unsplash.com/premium_photo-1664478294917-c11274b9ce79?w=600&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MXx8c2hhd2FybWElMjByb2xsfGVufDB8fDB8fHww" alt="Chicken Shawarma with Two Sausages" class="menu-item-image">
-      <div class="menu-item-content">
-        <div class="menu-item-header">
-          <h3 class="menu-item-title">Chicken Shawarma with Two Sausages</h3>
-          <div class="menu-item-price">₦3,500</div>
-        </div>
-        <p class="menu-item-description">Our popular chicken shawarma with the addition of two savory sausages.</p>
-        <div class="menu-item-footer">
-          <div class="menu-item-tags">
-            <span class="menu-tag">Popular</span>
-          </div>
-          <button class="add-to-cart">
-            <i class="fas fa-plus"></i>
-          </button>
-        </div>
-      </div>
-    </div>
-
-    <div class="menu-item" data-category="mains">
-      <img src="https://plus.unsplash.com/premium_photo-1664478294917-c11274b9ce79?w=600&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MXx8c2hhd2FybWElMjByb2xsfGVufDB8fDB8fHww" alt="Chicken Shawarma with Double Sausage" class="menu-item-image">
-      <div class="menu-item-content">
-        <div class="menu-item-header">
-          <h3 class="menu-item-title">Chicken Shawarma with 2 Sausages</h3>
-          <div class="menu-item-price">₦4,000</div>
-        </div>
-        <p class="menu-item-description">For the sausage lovers! Our classic shawarma with an extra two sausages.</p>
-        <div class="menu-item-footer">
-          <div class="menu-item-tags">
-      
-          </div>
-          <button class="add-to-cart">
-            <i class="fas fa-plus"></i>
-          </button>
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
-
 
   <section class="menu-section">
   <div class="section-header">
@@ -1189,162 +501,105 @@
 </section>
    
 
-  <!-- Back to top button -->
-  <a href="#" class="back-to-top" id="backToTop" aria-label="Back to top">
-    <i class="fas fa-arrow-up"></i>
-  </a>
-
-  <footer>
-    <div class="footer-content">
-      <div class="footer-column">
-        <h3>Wonder Mouth</h3>
-        <p>Where every bite is a delightful surprise and every meal is served with speed and love.</p>
-        <div class="social-links">
-          <a href="https://www.instagram.com/wondermouthcafe/" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
-          <a href="#" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
-          <a href="#" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
-          <a href="#" aria-label="WhatsApp"><i class="fab fa-whatsapp"></i></a>
-        </div>
-      </div>
-      
-      <div class="footer-column">
-        <h3>Quick Links</h3>
-        <a href="index.html">Home</a>
-        <a href="About.html">About Us</a>
-        <a href="Menu.html">Menu</a>
-        <a href="Contact.html">Contact</a>
-        <a href="Order.html">Order Online</a>
-      </div>
-      
-      <div class="footer-column">
-        <h3>Contact Info</h3>
-        <p><i class="fas fa-map-marker-alt"></i> Ald Estate, 6th Avenue Gwarimpa, Abuja</p>
-        <p><i class="fas fa-phone"></i> +234 8160348696</p>
-      </div>
+  <!-- Cart Notification -->
+  <div class="cart-notification" id="cartNotification"><span></span></div>
+  <!-- Cart Modal -->
+  <div class="cart-modal-bg" id="cartModalBg">
+    <div class="cart-modal">
+      <button class="cart-modal-close" id="cartModalClose" title="Close">&times;</button>
+      <h2>Your Order</h2>
+      <div id="cartItemsList"></div>
+      <div id="cartTotal"></div>
+      <form id="orderForm">
+        <input type="text" id="customerName" required placeholder="Your name">
+        <input type="text" id="customerPhone" required placeholder="e.g. 08012345678">
+        <textarea id="customerNote" rows="2" placeholder="Delivery address, special requests..."></textarea>
+        <button type="submit" class="send-whatsapp-btn"><i class="fab fa-whatsapp"></i> Send Order via WhatsApp</button>
+      </form>
     </div>
-    
-    <div class="copyright">
-      <p>&copy; 2025 Wonder Mouth Cafe. All rights reserved.</p>
-    </div>
-  </footer>
-
+  </div>
+  <!-- Floating Cart Button -->
+  <button class="cart-action-btn" id="cartActionBtn" title="View Cart" style="display:none;">
+    <i class="fas fa-shopping-cart"></i>
+    <span id="cartCountBadge" style="position:absolute;top:10px;right:15px;background:var(--primary-red);color:#fff;border-radius:50%;font-size:0.8rem;width:20px;height:20px;display:flex;align-items:center;justify-content:center;">0</span>
+  </button>
   <script>
-    // Mobile menu functionality
-    const hamburger = document.getElementById('hamburger');
-    const mobileMenu = document.getElementById('mobileMenu');
-    
-    hamburger.addEventListener('click', () => {
-      mobileMenu.classList.toggle('active');
-      hamburger.classList.toggle('active');
-    });
-    
-    // Close mobile menu when clicking outside
-    document.addEventListener('click', (e) => {
-      if (!hamburger.contains(e.target) && !mobileMenu.contains(e.target)) {
-        mobileMenu.classList.remove('active');
-        hamburger.classList.remove('active');
-      }
-    });
-    
-    // Close mobile menu when clicking a link
-    const mobileLinks = document.querySelectorAll('.mobile-nav-link');
-    mobileLinks.forEach(link => {
-      link.addEventListener('click', () => {
-        mobileMenu.classList.remove('active');
-        hamburger.classList.remove('active');
-      });
-    });
-    
-    // Menu filtering functionality
-    const filterButtons = document.querySelectorAll('.filter-button');
-    const menuItems = document.querySelectorAll('.menu-item');
-    
-    filterButtons.forEach(button => {
-      button.addEventListener('click', () => {
-        // Remove active class from all buttons
-        filterButtons.forEach(btn => btn.classList.remove('active'));
-        
-        // Add active class to clicked button
-        button.classList.add('active');
-        
-        // Get filter value
-        const filterValue = button.getAttribute('data-category');
-        
-        // Filter menu items
-        menuItems.forEach(item => {
-          if (filterValue === 'all') {
-            item.style.display = 'flex';
-          } else if (item.getAttribute('data-category') === filterValue) {
-            item.style.display = 'flex';
-          } else {
-            item.style.display = 'none';
-          }
-        });
-      });
-    });
-    
-    // Category navigation
-    const categoryLinks = document.querySelectorAll('.category-link');
-    
-    categoryLinks.forEach(link => {
-      link.addEventListener('click', (e) => {
-        e.preventDefault();
-        
-        // Remove active class from all links
-        categoryLinks.forEach(l => l.classList.remove('active'));
-        
-        // Add active class to clicked link
-        link.classList.add('active');
-        
-        // Scroll to the target section
-        const targetId = link.getAttribute('href').substring(1);
-        const targetSection = document.getElementById(targetId);
-        
-        if (targetSection) {
-          targetSection.scrollIntoView({ behavior: 'smooth' });
-        }
-      });
-    });
-    
-    // Add to cart functionality
-    const addToCartButtons = document.querySelectorAll('.add-to-cart');
-    const cartNotification = document.getElementById('cartNotification');
-    
-    addToCartButtons.forEach(button => {
-      button.addEventListener('click', () => {
+    // --- Simplified Whatsapp Ordering Cart ---
+    const cart = [];
+    function updateCartBadge() {
+      document.getElementById('cartCountBadge').textContent = cart.length;
+    }
+    function showCartNotification(msg) {
+      const cartNotification = document.getElementById('cartNotification');
+      cartNotification.querySelector('span').textContent = msg;
+      cartNotification.classList.add('show');
+      setTimeout(() => cartNotification.classList.remove('show'), 1800);
+    }
+    document.querySelectorAll('.add-to-cart').forEach(button => {
+      button.onclick = () => {
         const item = button.closest('.menu-item');
-        const itemName = item.querySelector('.menu-item-title').textContent;
-        
-        // Show notification
-        cartNotification.querySelector('span').textContent = `${itemName} added to cart!`;
-        cartNotification.classList.add('show');
-        
-        // Hide notification after 3 seconds
-        setTimeout(() => {
-          cartNotification.classList.remove('show');
-        }, 3000);
-        
-        // Here you would typically add the item to a cart array or object
-        console.log(`Added to cart: ${itemName}`);
+        const title = item.querySelector('.menu-item-title').textContent.trim();
+        const price = item.querySelector('.menu-item-price').textContent.replace(/[^\d]/g,'').trim();
+        cart.push({ title, price: Number(price) });
+        updateCartBadge();
+        showCartNotification(`${title} added to cart!`);
+        document.getElementById('cartActionBtn').style.display = "flex";
+      };
+    });
+    function renderCartModal() {
+      const listDiv = document.getElementById('cartItemsList');
+      listDiv.innerHTML = cart.length ? '' : '<p>Your cart is empty.</p>';
+      let total = 0;
+      cart.forEach((item, idx) => {
+        total += item.price;
+        const row = document.createElement('div');
+        row.className = 'cart-item-row';
+        row.innerHTML = `<span>${item.title}</span>
+          <span>₦${item.price.toLocaleString()}</span>
+          <button style="background:none;border:none;color:#FF4500;cursor:pointer;font-size:1.2rem;" title="Remove" onclick="removeCartItem(${idx})"><i class="fas fa-trash"></i></button>`;
+        listDiv.appendChild(row);
       });
-    });
-    
-    // Back to top button
-    const backToTopButton = document.getElementById('backToTop');
-    
-    window.addEventListener('scroll', () => {
-      if (window.pageYOffset > 300) {
-        backToTopButton.classList.add('visible');
-      } else {
-        backToTopButton.classList.remove('visible');
-      }
-    });
-    
-    backToTopButton.addEventListener('click', (e) => {
+      document.getElementById('cartTotal').textContent = cart.length ? `Total: ₦${total.toLocaleString()}` : '';
+    }
+    window.removeCartItem = idx => {
+      cart.splice(idx, 1);
+      updateCartBadge();
+      renderCartModal();
+      document.getElementById('cartActionBtn').style.display = cart.length ? "flex" : "none";
+    };
+    // Cart Modal controls
+    document.getElementById('cartActionBtn').onclick = () => {
+      renderCartModal();
+      document.getElementById('cartModalBg').classList.add('active');
+    };
+    document.getElementById('cartModalClose').onclick = () =>
+      document.getElementById('cartModalBg').classList.remove('active');
+    document.getElementById('cartModalBg').onclick = e => {
+      if (e.target === document.getElementById('cartModalBg'))
+        document.getElementById('cartModalBg').classList.remove('active');
+    };
+    // WhatsApp order form
+    document.getElementById('orderForm').onsubmit = function(e) {
       e.preventDefault();
-      window.scrollTo({ top: 0, behavior: 'smooth' });
-    });
+      if (!cart.length) return alert("Your cart is empty! Please add items.");
+      const name = document.getElementById('customerName').value.trim();
+      const phone = document.getElementById('customerPhone').value.trim();
+      const note = document.getElementById('customerNote').value.trim();
+      let message = `*Wonder Mouth Cafe Order*\nName: ${name}\nPhone: ${phone}\n\n*Order:*\n`;
+      cart.forEach((item, i) => {
+        message += `${i+1}. ${item.title} - ₦${item.price.toLocaleString()}\n`;
+      });
+      message += `\nTotal: ₦${cart.reduce((s,x)=>s+x.price,0).toLocaleString()}\n`;
+      if (note) message += `\nNote: ${note}`;
+      message += `\n\nThank you!`;
+      const whatsappNumber = "2348160348696";
+      const waURL = `https://wa.me/${whatsappNumber}?text=${encodeURIComponent(message)}`;
+      window.open(waURL, "_blank");
+      document.getElementById('cartModalBg').classList.remove('active');
+      cart.length = 0; // clear cart
+      updateCartBadge();
+      document.getElementById('cartActionBtn').style.display = "none";
+    };
   </script>
 </body>
 </html>
-
